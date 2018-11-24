@@ -1,0 +1,56 @@
+* {box-sizing:border-box}
+
+body {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    font-family: 'Merriweather', serif;
+    background-color: #ebebeb;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+}
+
+aside > h1 > article {
+    font-size: 0.4em;
+}
+
+#user_info {
+border: 1px solid red;
+display: grid;
+grid-template-columns: auto auto;
+grid-template-rows: auto auto auto auto auto;
+}
+
+#latest_news{
+    border: 1px solid black;
+}
+
+#badge_info{
+    border: 1px solid green;
+}
+
+li {
+    list-style-type:none;
+    color: black;
+    padding: 0.5em;
+    text-decoration: underline; 
+}
+
+a {
+    text-decoration: none;
+    color: #0060B6;
+
+}
+
+#skillbar{
+        width: 100%; /* Full width */
+        height: 60%;
+        background-color: rgb(0, 0, 0); /* Grey background */
+}
+
+.skills {
+    text-align: right; /* Right-align text */
+    color: white; /* White text color */
+}
