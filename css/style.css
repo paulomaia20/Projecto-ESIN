@@ -1,12 +1,132 @@
 * {box-sizing:border-box}
 
 body {
-    display: grid;
+  /*  display: grid;
     grid-template-columns: auto auto auto;
-    grid-template-rows: auto;
+    grid-template-rows: auto; */ 
     font-family: 'Merriweather', serif;
     background-color: #ebebeb;
 }
+
+/* Grid info start */ 
+
+.container {
+    display: grid;
+
+    grid-template-areas:
+      "header header header"
+      "nav content side"
+      "footer footer footer";
+  
+    grid-template-columns: 0.7fr auto auto;
+    grid-template-rows: auto auto auto;
+    grid-gap: 10px;
+  
+    height: 100vh;
+  }
+
+  .header-container {
+    grid-area: header; 
+    display: inline-block; 
+    border-bottom: 2px solid black;
+    padding: 0;
+    margin: 0;
+  }  
+  
+  nav {
+    grid-area: nav;
+    margin-left: 0.5rem;
+  } 
+  
+  main {
+    grid-area: content;
+  }
+  
+  aside {
+    grid-area: side;
+    margin-right: 0.5rem;
+  }
+  
+ /* footer {
+    grid-area: footer;
+    background-color: rgb(43, 43, 43); 
+    color: white;
+    align-self: center;
+    justify-self: center;   
+  } */ 
+
+  @media (max-width: 768px) { /* MUDAR ISTO, ESTÁ FEIO */ 
+    .container {
+      grid-template-areas:
+        "header"
+        "nav"
+        "content"
+        "side"
+        "footer";
+  
+      grid-template-columns: 1fr;
+      grid-template-rows:
+        auto /* Header */
+        minmax(75px, auto) /* Nav */
+        1fr /* Content */
+        minmax(75px, auto) /* Sidebar */
+        auto; /* Footer */
+    }
+  
+    nav, aside {
+      margin: 0;
+    }
+  }
+
+/* Grid info end */
+
+
+/* Header and navigation bar start */ 
+
+   .header-container input[type=text] {
+    padding: 0.1em;   
+    border: none;
+  }
+
+  .navbar button {
+      margin: -0.2em;
+  }
+
+   .logo {
+    margin-left: 1%;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2em;
+    color: rgb(8, 151, 104); 
+    padding-right: 13em;
+
+   }
+
+   /* Navbar style */ 
+   .navbar {
+    margin: 0.1em 0 0 2%;
+   }
+
+   header ul li {
+    display: inline-block;
+    padding: 0 1.1em 0 0;
+    font-size: 0.9em;
+   }
+
+   header ul li a {
+    text-decoration: none;
+    color: #7D7C7D;
+   }
+   li a.active {
+    color: #000000;
+    border-bottom: 2px solid #000000;
+    font-weight: 300;
+   }
+   li a:hover {
+    color: #B6B6B6;
+   }
+
+
+/* Header and navigation bar end */ 
 
 h1 {
     font-family: 'Open Sans', sans-serif;
@@ -18,9 +138,6 @@ aside > h1 > article {
 
 #user_info {
 border: 1px solid red;
-display: grid;
-grid-template-columns: auto auto;
-grid-template-rows: auto auto auto auto auto;
 }
 
 #latest_news{
@@ -44,8 +161,11 @@ ul {
 
 a {
     text-decoration: none;
-    color: #0060B6;
+    color: white;
+}
 
+footer a {
+    font-weight: 900;
 }
 
 #skillbar{
