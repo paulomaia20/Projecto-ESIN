@@ -92,38 +92,14 @@ body {
       margin: -0.3em;
   }
 
-   .logo {
-    margin-left: 1%;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 2em;
-    color: rgb(8, 151, 104); 
-    padding-right: 5em;
-
-   }
-
    /* Navbar style */ 
-   .navbar {
-    margin: 0.1em 0 0 2%;
-   }
-
+ 
    header ul li {
     display: inline-block;
     padding: 0 1.1em 0 0;
     font-size: 0.9em;
    }
 
-   header ul li a {
-    text-decoration: none;
-    color: #7D7C7D;
-   }
-   li a.active {
-    color: #000000;
-    border-bottom: 2px solid #000000;
-    font-weight: 300;
-   }
-   li a:hover {
-    color: #B6B6B6;
-   }
 
 
 /* Header and navigation bar end */ 

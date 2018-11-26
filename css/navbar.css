@@ -1,0 +1,52 @@
+/* ==================== NAV BAR =============== */
+
+.main-navbar{
+	width:100%;
+	height: 70px;
+	background-color:#48B8FA; 
+	position:sticky;
+	top: 0;
+}
+
+.main-navbar ul{
+	display: flex;
+	float:right;
+	margin: 0;
+    padding-right: 100px;
+    padding-left: 0;
+}
+
+.main-navbar ul li{
+    list-style: none;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}
+
+.main-navbar ul li a{
+	display: block;
+	padding:0 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+	color:white;
+	line-height: 70px;
+}
+
+.main-navbar input[ type="text"]
+{
+    margin-top:2em;
+}
+
+.navbar-brand {
+	line-height: 70px;
+	padding: 0 100px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 2em;
+	color:white;
+	text-decoration: none;
+}
+
+.main-navbar ul li a:hover,
+.main-navbar ul li a.active{
+	font-weight: bold;
+}
