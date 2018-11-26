@@ -1,11 +1,12 @@
 /* ==================== NAV BAR =============== */
 
 .main-navbar{
-	width:100%;
+	width: 100%;
 	height: 70px;
 	background-color:#48B8FA; 
 	position:sticky;
 	top: 0;
+	z-index: 999;
 }
 
 .main-navbar ul{
@@ -16,10 +17,30 @@
     padding-left: 0;
 }
 
+.main-navbar ul li:first-child input[type="text"] {
+	height: 1.5em;
+    margin-top: 0em;
+	padding-top: 0.2em;
+	margin-top:2em;
+	background: rgb(231, 231, 231);
+	font-size: 0.9em; 
+    color: rgb(255, 255, 255);
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+
+.main-navbar ul li:first-child input[type="text"]:focus {
+	outline: 0;
+	background: #fff;
+    border: 3px solid #fff;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+}
+
 .main-navbar ul li{
     list-style: none;
     padding-left: 0.3em;
-    padding-right: 0.3em;
+    padding-right: 0em;
 }
 
 .main-navbar ul li a{
@@ -30,11 +51,6 @@
 	font-family: 'Montserrat', sans-serif;
 	color:white;
 	line-height: 70px;
-}
-
-.main-navbar input[ type="text"]
-{
-    margin-top:2em;
 }
 
 .navbar-brand {

@@ -6,6 +6,7 @@ body {
     grid-template-rows: auto; */ 
     font-family: 'Merriweather', serif;
     background-color: #ebebeb;
+    margin: 0; 
 }
 
 /* Grid info start */ 
@@ -26,10 +27,10 @@ body {
   }
 
   .header-container {
+    
     grid-area: header; 
-    display: inline-block; 
-    border-bottom: 2px solid black;
     padding: 0;
+
     margin: 0;
   }  
   
