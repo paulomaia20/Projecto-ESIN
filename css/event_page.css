@@ -4,32 +4,49 @@
     body {
     height:100%;
     background-color:rgb(192, 224, 215);
-    margin:2em;
+    margin:0px;
     color: #ffffff;
     }
 
     .right-bar {
         float: right;
         height: 100%;
-        margin-left: auto;
-        margin-right: auto;
         max-width: 30%;
-
     }
 
     .middle-bar {
-        float: none;
+        display: inline-block;
         height: 100%;
         margin-left: auto;
         margin-right: auto;
-        max-width: 30%;
+        max-width: 40%;
 
     }
 
     .left-bar {
         float: left;
         height: 100%;
-        margin-left: auto;
-        margin-right: auto;
         max-width: 30%;
+    }
+
+    .wrapper{
+        size: 100%;
+        padding: 1em;
+        margin: 1em;
+        background-color: rgb(170, 238, 229);
+        box-shadow: 0 8px 15px rgba(54,79,199,0.1), 0 18px 35px rgba(54,79,199,0.15);
+        border-radius: 0.5em;
+    }
+
+    .post-description p {
+        color: #083c66;
+        margin:0.3em;
+        font-size: 0.8em; 
+    }
+    
+    .post-description {
+        
+        background-color: rgb(255, 255, 255);
+        border-radius: 0.5em;
+
     }
