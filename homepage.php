@@ -42,7 +42,7 @@ echo $_SESSION['name'];
 
         <img alt="avatar" src="img/avatar_1.jpg">
         <div id="first_row">
-            <h1>username1 <p id="level">Nível N</p></h1> 
+            <h1> <?php echo $_SESSION['name'] ?>  <p id="level">Nível N</p></h1> 
 
             <h2>Experience points</h2>
             <div id="skillbar">
