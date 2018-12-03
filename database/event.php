@@ -1,10 +1,9 @@
 <?php
 
-  function createEvent($temp) {
+  function createEvent($title, $date, $body, $place, $type, $name_creator) {
     global $conn;
-
-    $stmt = $conn->prepare('INSERT INTO users VALUES (?, ?, ?)');
-    $stmt->execute(array($username, $email, $hash));
+    $stmt = $conn->prepare('INSERT INTO event (title, date, description, place, type, name_creator) VALUES (?, ?, ?, ?, ?, ?)');
+    $stmt->execute(array($title, $date, $body, $place, $type, $name_creator));
   }
 
 ?>

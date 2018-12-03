@@ -33,5 +33,6 @@
         <input type="submit" value="Log In">
         </form>
 	</div>
+
 	<p id="inscreve-te"> Não tens uma conta no RecycleABit? <a href="mainpage.html">Inscreve-te!</a></p>
 </body>

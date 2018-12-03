@@ -6,10 +6,13 @@
   $password = $_POST['password'];
 
   if (isValidUser($username, $password)) {
+    session_start();
     $_SESSION['success_message'] = 'Login successful!';
     $_SESSION['name'] = $username;
+
   } else {
     $_SESSION['error_message'] = 'Login failed!';
+    die(header('Location: login.php'));
   }
 
   header('Location: homepage.php');

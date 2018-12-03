@@ -2,31 +2,33 @@
   include ('config/init.php');
   include ('database/event.php');
 
-  $username = strip_tags($_POST['name']); //Removes HTML from a string
-  $password = $_POST['password'];
-  $email = $_POST['email']; //Tentar com o strip_tags
+  $title = strip_tags($_POST['title']); //Removes HTML from a string
+  $date = $_POST['date']; 
+  $body = strip_tags($_POST['body']); 
+  $place = $_POST['place']; 
+  $type = $_POST['type']; 
+  $name_creator= $_SESSION['name']; 
 
-  if (!$username || !$password || !$email) {
-    $_SESSION['error_message'] = 'All fields are mandatory!';
-    $_SESSION['form_values'] = $_POST;
-    die(header('Location: register.php'));
+  if (!$title || !$place || !$type) {
+    $_SESSION['error_message'] = 'You did not fill all mandatory fields!';
+    //die(header('Location: create_event.php'));
+    header('Location: create_event.php');
   }
 
   try {
-    createUser($username, $password, $email);
-    $_SESSION['success_message'] = 'User registered with success!';
+   // createEvent($title, $date, $body, $place, $type, $name_creator);
+    $_SESSION['success_message'] = 'Created event!';
   } catch (PDOException $e ) {
-
-    if (strpos($e->getMessage(), 'users_pkey') !== false)
+    echo $e;
+  /*  if (strpos($e->getMessage(), 'users_pkey') !== false)
       $_SESSION['error_message'] = 'Username already exists!';
     else
       $_SESSION['error_message'] = 'FAILED!';
 
-    $_SESSION['form_values'] = $_POST;
-   // echo $e; para debugging 
+    $_SESSION['form_values'] = $_POST; */ 
 
-    die(header('Location: register.php'));
+  //  die(header('Location: register.php'));
   }
 
-  header('Location: templates/header.php');
+ // header('Location: templates/header.php');
 ?>

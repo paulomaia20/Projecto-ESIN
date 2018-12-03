@@ -34,6 +34,12 @@
 					
 					</form>
 
+<?php    if(isset($_GET['msg']))
+    {
+        $Message = $_GET['msg'];
+        echo $Message;
+	}  
+	?> 
 				</div>
 			</div>
 		</div>

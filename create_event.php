@@ -1,5 +1,7 @@
 <?php
 include('config/init.php');
+include('database/event.php');
+
 ?>
 
 <html lang="en-US">
@@ -51,11 +53,11 @@ include('config/init.php');
                 </div>
 
                 <div class="form-bottom">
-                    <label for="name">Nome do evento*:</label>
-                    <input type="text" placeholder="Nome do evento" name="name" id="name"> <br>
+                    <label for="title">Nome do evento*:</label>
+                    <input type="text" placeholder="Nome do evento" name="title" id="title"> <br>
 
                     <label for="date">Data do evento*:</label>
-                    <input type="date" name="name" id="name"> <br>
+                    <input type="date" name="date" id="date"> <br>
 
                     <label for="body">Descrição do evento:</label>
                     <textarea name="body" placeholder="Descrição" rows="4" cols="50">  </textarea><br>
@@ -74,6 +76,8 @@ include('config/init.php');
                 <div class="form-end">
                     <input type="submit" value="Send">
                 </div>
+
+<?php echo  $_SESSION['error_message']; ?>
 
             </form>
         </div>
