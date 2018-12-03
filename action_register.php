@@ -4,7 +4,7 @@
 
   $username = strip_tags($_POST['name']); //Removes HTML from a string
   $password = $_POST['password'];
-  $email = $_POST['email'];
+  $email = $_POST['email']; //Tentar com o strip_tags
 
   if (!$username || !$password || !$email) {
     $_SESSION['error_message'] = 'All fields are mandatory!';
