@@ -12,7 +12,7 @@
   if (!$title || !$place || !$type) {
     $_SESSION['error_message'] = 'You did not fill all mandatory fields!';
     //die(header('Location: create_event.php'));
-    header('Location: create_event.php');
+    die(header('Location: create_event.php'));
   }
 
   try {

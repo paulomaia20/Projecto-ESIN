@@ -1,13 +1,10 @@
 <?php
-
   include('config/init.php');
   include('templates/header.php');
   include('templates/navbar.php');
-
 ?>
 
 <body>
-    
 	<img id="skyline" src="img/theskyline4.jpg" alt="Sky Line">
 	<div id="section1">
 		<h1 id="name"><b>Recycle</b>ABit</h1>

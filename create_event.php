@@ -77,8 +77,6 @@ include('database/event.php');
                     <input type="submit" value="Send">
                 </div>
 
-<?php echo  $_SESSION['error_message']; ?>
-
             </form>
         </div>
 
