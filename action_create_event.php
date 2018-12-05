@@ -16,7 +16,7 @@
   }
 
   try {
-   // createEvent($title, $date, $body, $place, $type, $name_creator);
+    createEvent($title, $date, $body, $place, $type, $name_creator);
     $_SESSION['success_message'] = 'Created event!';
   } catch (PDOException $e ) {
     echo $e;

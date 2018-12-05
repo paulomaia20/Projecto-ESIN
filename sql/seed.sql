@@ -18,6 +18,17 @@
  name_creator VARCHAR
  );
 
+ -- Tipo_evento(id, tipo, pontuação)
+
+ CREATE TABLE event_type(
+ id SERIAL,
+ type VARCHAR NOT NULL,
+ score INT
+ );
+
+INSERT INTO event_type(type,score)  VALUES('Teste1', 3);
+INSERT INTO event_type(type,score)  VALUES('Teste2', 5);
+INSERT INTO event_type(type,score)  VALUES('Teste3', 6);
 
 
 

@@ -27,7 +27,7 @@
 		<h1 id="name"><b>Recycle</b>ABit</h1>
 	</div>
 	<div class="row">
-        <form method="post" action="action_login.php">
+        <form  method="post" action="action_login.php">
 		<input type="text" name="name" placeholder="Nome de Utilizador">
 		<input type="password" placeholder="Senha" name="password">
         <input type="submit" value="Log In">
