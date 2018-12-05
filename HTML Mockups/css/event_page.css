@@ -1,62 +1,66 @@
-* {
-    margin: 0;
-  }
-  
-  body {
-    background: #7BD434;
-    font-family: 'Montserrat', sans-serif;
-	  font-size: 1em;
-	  color:rgb(43, 134, 15);
-	  text-decoration: none;
-  }
+*{  
+    margin:0px;
+}
+    body {
+    height:100%;
+    background-color:rgb(192, 224, 215);
+    margin:0px;
+    color: #ffffff;
+    }
 
-  h1{
-   font-family: 'Montserrat', sans-serif;
-	  font-size: 2em;
-	  color:rgb(255, 255, 255);
-	  text-decoration: none;
-    text-align: center;
-  }
+    .right-bar {
+        float: right;
+        width: 30%;
+    }
 
-  h3 {
-    margin: auto; 
-  }
-  
-  /*GRID*/
-  ul {
-    margin: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-gap: .5em;
-    width: 90%;
-    height: 100%;
-    background: #2d8338;
-    padding: .5em;
-    border: .2em solid #97ec65;
-    box-sizing: border-box;
-    border-radius: .5em;
-    transition: all 0.3s ease;
-  }
-  
-  ul li:hover {
-    border: .25em solid #ffffff;
-    box-shadow: 0 8px 15px rgba(54,79,199,0.1), 0 18px 35px rgba(54,79,199,0.15);
-    transform: translateY(-1px);
-    transition: all 0.1s ease;
-    opacity: 0.5;
-  }
-  
-  li {
-    background: #ffffff;
-    box-sizing: border-box;
-    text-align: center;
-    list-style: none;
-    opacity: 1;
-  }
+    .middle-bar {
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%
+    }
 
-  .board{
-    max-width: 50%;
+    .left-bar {
+        float: left;
+        width: 30%;
+    }
 
-  }
-  
+    .wrapper{
+        size: 100%;
+        padding: 0.5em;
+        margin: 1em;
+        background-color: rgb(170, 238, 229);
+        box-shadow: 0 8px 15px rgba(54,79,199,0.1), 0 18px 35px rgba(54,79,199,0.15);
+        border-radius: 0.5em;
+    }
+    
+    .post{
+        margin: .5em;
+    }
+    .post-description {
+        background-color: rgb(255, 255, 255);
+        border-radius: 0.5em;
+    }
+    
+    .post-description p {
+        color: #083c66;
+        margin:0.3em;
+        font-size: 0.8em; 
+    }
+    
+    .event-info{
+        display: inline-block;
+
+    }
+    .status-upload{
+        text-align: center;
+        margin: .5em;
+        
+    }
+    .button{
+        margin:.5em; 
+        }
+    
+    .text-input{
+        width: 100%;
+    }
