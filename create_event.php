@@ -2,6 +2,8 @@
 include('config/init.php');
 include('database/event.php');
 
+$event_types=getAllEventTypes();
+
 ?>
 
 <html lang="en-US">
@@ -63,13 +65,13 @@ include('database/event.php');
                     <textarea name="body" placeholder="Descrição" rows="4" cols="50">  </textarea><br>
 
                     <label for="place">Local do evento*:</label>
-                    <input type="text" placeholder="Local" name="place" id="place"> <br>
-
+                    <input type="text" placeholder="Local" name="place" id="place"> <br> 
                     <label for="type">Tipo de evento*:</label>
                     <select name="type">
-                        <option value="limpeza_coletiva">Limpeza coletiva (+10XP)</option>
-                        <option value="limpeza_coletiva">Limpeza coletiva (+10XP)</option>
-                        <option value="limpeza_coletiva">Limpeza coletiva (+10XP)</option>
+                    <?php foreach ($event_types as $type) {?>
+                                                   
+                    <option value='<?= $type['type']; ?>'> <?= $type['type']."+".$type['score']."XP";  ?>   </option>
+                    <?php } ?> 
                     </select> <br>
                 </div>
 
