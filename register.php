@@ -31,10 +31,10 @@
 					
 					</form>
 
-<?php    if(isset($_GET['msg']))
+<?php  	
+ if(isset($_ERROR_MESSAGE))
     {
-        $Message = $_GET['msg'];
-        echo $Message;
+        echo $_ERROR_MESSAGE; //ver init.php 
 	}  
 	?> 
 				</div>

@@ -9,7 +9,9 @@
   if (!$username || !$password || !$email) {
     $_SESSION['error_message'] = 'All fields are mandatory!';
     $_SESSION['form_values'] = $_POST;
-    die(header('Location: register.php?msg='.$_SESSION['error_message']));
+   // die(header('Location: register.php?msg='.$_SESSION['error_message']));
+   die(header('Location: register.php'));
+
   }
 
   try {
@@ -29,7 +31,7 @@
    // echo $e; para debugging 
      
 
-    die(header('Location: register.php?msg='.$_SESSION['error_message']));
+    die(header('Location: register.php'));
   }
 
   header('Location: templates/header.php');
