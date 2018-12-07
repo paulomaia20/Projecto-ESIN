@@ -68,8 +68,7 @@ $event_types=getAllEventTypes();
                     <input type="text" placeholder="Local" name="place" id="place"> <br> 
                     <label for="type">Tipo de evento*:</label>
                     <select name="type">
-                    <?php foreach ($event_types as $type) {?>
-                                                   
+                    <?php foreach ($event_types as $type) {?>                  
                     <option value='<?= $type['type']; ?>'> <?= $type['type']."+".$type['score']."XP";  ?>   </option>
                     <?php } ?> 
                     </select> <br>
