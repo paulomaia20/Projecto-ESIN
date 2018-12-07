@@ -58,9 +58,26 @@
         
     }
     .button{
-        margin:.5em; 
+        margin:.5em;
         }
     
     .text-input{
         width: 100%;
+    }
+
+    .icon-right{
+        float: right;
+        max-width: 20px;
+    }
+    .icon-left{
+        float: left;
+        max-width: 20px;
+    }
+    
+    .wrapper-button{
+        text-align: center;
+    }
+ 
+    .delete{
+        float: right;
     }

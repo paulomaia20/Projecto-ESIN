@@ -31,14 +31,19 @@
         
         <div class="left-bar">
             <div class="wrapper">
-            <h3 class="event-info">Number of participants: 1029 </h3> <img src="img/man-user.png" alt="user">
+            <h3 class="event-info">Number of participants: 1029 </h3> <img src="img/man-user.png" alt="user" class="icon-right">
             <hr>
-            <h3 class="event-info">Number of comments: 3</h3> <img src="img/chat.png" alt="comment">
+            <h3 class="event-info">Number of comments: 3</h3> <img src="img/chat.png" alt="comment" class="icon-right">
+            <hr>
+            <h3 class="event-info">Venue: FEUP</h3> <img src="img/localization.png" alt="venue" class="icon-right">
             <hr>
             <h2>Participants</h2>
             <div class="participant">
                 <img src="img/avatar_1.jpg" alt="avatar_1"> <p> Username_1 </p>
             </div>
+            </div>
+            <div class="wrapper-button">
+                <button type="submit" class="button"> Participate</button>
             </div>
         </div>
         <div class="middle-bar">
@@ -57,7 +62,9 @@
                 <h3>Comment Section</h3>
                 <div class="status-upload">
                     <form>
+                        <img src="img/left-quote.png" alt="left quote mark" class="icon-left">
                         <textarea class="text-input" placeholder="Write a comment here..."></textarea>
+                        <img src="img/right-quote.png" alt="right quote mark" class="icon-right">
                         <button type="submit" class="button"> Comment</button>
                     </form>
                 </div>
@@ -71,10 +78,9 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
                 ut labore et dolore magna aliqua.</p>
                 </div>
-                <h6 class="text-muted time">1 minute ago</h6>
-            
                 <div class="stats">
-                    <a href="#"><i aria-hidden="true"></i> Remove </a>
+                    <h6 class="text-muted-time">1 minute ago</h6>
+                    <a class="delete" href="#"><h6> <b>X</b> Remove </h6> </a>
                 </div>
             </div>
         </aside>
