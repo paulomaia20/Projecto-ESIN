@@ -1,6 +1,14 @@
 <?php
 include('config/init.php');
-echo $_SESSION['name'];
+include('database/missions.php');
+
+$curr_mission=getMissionByUser($_SESSION['name']);
+print_r($curr_mission);
+
+$mission_tasks=getTasksByMission($curr_mission['id']);
+print_r($mission_tasks);
+
+
 ?>
 
 <html lang="en-US">
@@ -65,11 +73,13 @@ echo $_SESSION['name'];
     <div id="second-row">
 
     <section id="missions">
-        <form class="todoList">
+        <form class="todoList" action="action_mission_completed.php">
             <h1>Missão #1</h1>
             <div class="items">
 
-                <input id="item1" type="checkbox" checked>
+<?php 
+?> 
+                <input id="item1" type="checkbox">
                 <label for="item1">Recolher 10kg de papel</label>
 
                 <input id="item2" type="checkbox">
