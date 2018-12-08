@@ -3,10 +3,13 @@ include('config/init.php');
 include('database/missions.php');
 
 $curr_mission=getMissionByUser($_SESSION['name']);
-print_r($curr_mission);
+//print_r($curr_mission);
 
 $mission_tasks=getTasksByMission($curr_mission['id']);
-print_r($mission_tasks);
+//print_r($mission_tasks);
+
+$user_tasks=getTasksByUser($_SESSION['name']);
+print_r($user_tasks);
 
 
 ?>
@@ -73,21 +76,21 @@ print_r($mission_tasks);
     <div id="second-row">
 
     <section id="missions">
-        <form class="todoList" action="action_mission_completed.php">
-            <h1>Missão #1</h1>
+        <form class="todoList" action="action_update_task_list.php" method="POST">
+            <h1>Missão #<?= $curr_mission['id'] ?> </h1>
             <div class="items">
-
-<?php 
-?> 
-                <input id="item1" type="checkbox">
-                <label for="item1">Recolher 10kg de papel</label>
-
-                <input id="item2" type="checkbox">
-                <label for="item2">Levar o papel ao Banco Alimentar</label>
-
-                <input id="item3" type="checkbox">
-                <label for="item3">Netflix and chill</label>
-
+<?php $k=0;
+foreach ($mission_tasks as $task) { 
+$k++;?> 
+                <?php if($user_tasks[$k-1]['completed']===true) { ?> 
+                     <input checked value='<?= $task['id'] ?>' name="tasks[]" id='item.<?=$task['id']?>' type="checkbox">
+                <?php } ?> 
+                <?php if($user_tasks[$k-1]['completed']===false) { ?> 
+                     <input value='<?= $task['id'] ?>' name="tasks[]" id='item.<?=$task['id']?>' type="checkbox">
+                     <?php } ?> 
+                <label for='item.<?=$task['id']?>'><?= $task['description'] ?> </label>
+           
+<?php } ?> 
                 <h2 class="done">Done</h2>
                 <h2 class="pending">Pending</h2>
 
