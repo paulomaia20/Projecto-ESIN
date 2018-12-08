@@ -12,6 +12,9 @@
   }
 
   function createUser($username, $password, $email) {
+
+    //FALTA ADICIONAR A PRIMEIRA MISSÃO 
+    
     global $conn;
 
     $options = [
