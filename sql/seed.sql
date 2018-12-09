@@ -37,22 +37,12 @@
   CREATE TABLE task(
  id SERIAL PRIMARY KEY,
  description VARCHAR,
- completed boolean
+ completed boolean,
+ id_mission INTEGER
  );
 
- -- Tarefas_missao(#id_missao->missao, #id_tarefa->tarefa)
-CREATE TABLE tasks_mission(
- id_mission INTEGER,
- id_task INTEGER
- );
 
  -- Missoes_user(#id_user->user, #id_missao->missao)
- CREATE TABLE user_mission(
- id_mission INTEGER,
- name_user VARCHAR
- );
-
-  -- Missoes_user(#id_user->user, #id_missao->missao)
  CREATE TABLE user_mission(
  id_mission INTEGER,
  name_user VARCHAR
@@ -64,6 +54,34 @@ CREATE TABLE tasks_mission(
  name_user VARCHAR,
  completed boolean DEFAULT false
  );
+
+ -- UserPoints(id, id_user->user, id_missao->missao, id_tipo_evento->tipo_evento, points) 
+CREATE TABLE userpoints(
+  id SERIAL PRIMARY KEY,
+  name_user VARCHAR,
+  id_mission INTEGER,
+  id_event_type INTEGER,
+  score INTEGER
+);
+
+ -- Comment(id, description, #id_event->event, #name_user->user) 
+CREATE TABLE comment(
+  id SERIAL PRIMARY KEY,
+  description VARCHAR,
+  id_event INTEGER REFERENCES event(id),
+  date DATE default CURRENT_DATE, 
+  name_user VARCHAR REFERENCES users(name)
+);
+
+
+
+ALTER TABLE ONLY userpoints
+ ADD CONSTRAINT userpoints_name_user FOREIGN KEY (name_user)
+REFERENCES users(name) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE ONLY userpoints
+ ADD CONSTRAINT userpoints_id_mission FOREIGN KEY (id_mission)
+REFERENCES mission(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 ALTER TABLE ONLY user_tasks 
@@ -78,18 +96,9 @@ ALTER TABLE ONLY user_tasks
  ADD CONSTRAINT user_tasks_user_name_fkey FOREIGN KEY (name_user)
 REFERENCES users(name) ON UPDATE CASCADE ON DELETE CASCADE;
 
-ALTER TABLE ONLY tasks_mission 
-ADD CONSTRAINT tasks_mission_pkey PRIMARY KEY
-(id_mission, id_task);
-
-ALTER TABLE ONLY tasks_mission
+ALTER TABLE ONLY task
  ADD CONSTRAINT id_mission_fkey FOREIGN KEY (id_mission)
 REFERENCES mission(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-ALTER TABLE ONLY tasks_mission
- ADD CONSTRAINT id_task_fkey FOREIGN KEY (id_task)
-REFERENCES task(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
 
 ALTER TABLE ONLY user_mission
 ADD CONSTRAINT user_missions_pkey PRIMARY KEY
@@ -107,20 +116,16 @@ REFERENCES users(name) ON UPDATE CASCADE ON DELETE CASCADE;
 INSERT INTO mission(score, description) VALUES(30,'descricao missao 1');
 INSERT INTO mission(score, description) VALUES(40,'descricao missao 2');
 
-INSERT INTO task(description,completed) VALUES('task1_m1',false);
-INSERT INTO task(description,completed) VALUES('task2_m1',false);
-INSERT INTO task(description,completed) VALUES('task3_m1',false);
-INSERT INTO task(description,completed) VALUES('task1_m2',false);
-INSERT INTO task(description,completed) VALUES('task2_m2',false);
-INSERT INTO task(description,completed) VALUES('task3_m2',false);
+INSERT INTO task(description,completed, id_mission) VALUES('task1_m1',false,1);
+INSERT INTO task(description,completed, id_mission) VALUES('task2_m1',false,1);
+INSERT INTO task(description,completed, id_mission) VALUES('task3_m1',false,1);
+INSERT INTO task(description,completed, id_mission) VALUES('task1_m2',false,2);
+INSERT INTO task(description,completed, id_mission) VALUES('task2_m2',false,2);
+INSERT INTO task(description,completed, id_mission) VALUES('task3_m2',false,2);
 
 INSERT INTO event_type(id,type,score)  VALUES(1,'Teste1', 3);
 INSERT INTO event_type(id,type,score)  VALUES(2,'Teste2', 5);
 INSERT INTO event_type(id,type,score)  VALUES(3,'Teste3', 6);
-
-INSERT INTO tasks_mission (id_mission,id_task) VALUES (1,1);
-INSERT INTO tasks_mission (id_mission,id_task) VALUES (1,2);
-INSERT INTO tasks_mission (id_mission,id_task) VALUES (1,3);
 
 INSERT INTO user_mission (id_mission, name_user) VALUES (1, 'paulo');
 
@@ -134,3 +139,5 @@ INSERT INTO event(title, description, place, type, name_creator) VALUES ('Title1
 INSERT INTO event(title, description, place, type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup','Teste1','Joao');
 INSERT INTO event(title, description, place, type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup','Teste1','Joao');
 INSERT INTO event(title, description, place, type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup','Teste1','Joao');
+
+INSERT INTO comment(description,id_event,name_user) VALUES('lorem ipsumlorem ipsum lorem ipsumlorem ipsumlorem ipsum ', 1, 'paulo');

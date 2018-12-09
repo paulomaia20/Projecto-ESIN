@@ -1,0 +1,120 @@
+<?php
+  include ('config/init.php');
+  include ('database/event.php');
+  
+  if(isset($_GET['id']))
+  {
+  $id = $_GET['id'];
+  $event = getEventById($id);
+  $comments=getCommentsByEventId($id);
+  $nr_comments=getNrCommentsInEvent($id);
+}
+
+?> 
+
+<html lang="en-US">
+
+<head>
+    <title>RecycleABit - Event Page</title>
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/style_withoutgridlayout.css">
+
+    <link rel="stylesheet" href="css/event_page.css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,800" rel="stylesheet">
+    <link href="css/navbar.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+        <header class="header-container">
+                <!-- Header content -->
+                <div class="main-navbar">
+                    <a class="navbar-brand" href="#"><b>Recycle</b>ABit</a>
+                    <ul>
+                        <li>
+                        <input type="text" placeholder="Pesquisa de eventos">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                        </li>
+    
+                        <li><a href="#" title="New event">Novo evento</a></li>
+                        <li><a href="#" class="active" title="My profile">Meu perfil</a></li>
+                        <li><a href="#" title="Log out">Sair</a></li> 
+                    </ul>
+                </div>
+        </header>                       
+        
+        <div class="left-bar">
+            <div class="wrapper">
+            <h3 class="event-info">Number of participants - </h3> <h5 class="event-info"> 1029</h5> <img src="img/man-user.png" alt="user" class="icon-right">
+            <br>
+            <h3 class="event-info">Number of comments - </h3> <h5 class="event-info"> <?=$nr_comments['cmt_nr']?> </h5><img src="img/chat.png" alt="comment" class="icon-right">
+            <br>
+            <h3 class="event-info">Venue - </h3><h5 class="event-info"> <?= $event['place'] ?> </h5><img src="img/localization.png" alt="venue" class="icon-right">
+            <div class="wrapper-button">
+                <button type="submit" class="button"> Participate</button>
+                <button type="submit" class="button"> Edit details</button>
+            </div>
+            </div>
+            
+            <div class="wrapper">
+                <h3>Participants</h3>
+                <div class="list-participants">
+                <div class="participant">
+                    <img src="img/avatar_1.jpg" alt="avatar_1"> <h6> Username_1 </h6>
+                </div>
+                <div class="participant">
+                    <img src="img/avatar_1.jpg" alt="avatar_1"> <h6> Username_2 </h6>
+                </div>
+                <div class="participant">
+                    <img src="img/avatar_1.jpg" alt="avatar_1"> <h6> Username_3 </h6>
+                </div>
+                </div>
+            </div>
+                
+        </div>
+        <div class="middle-bar">
+            <article class="wrapper">
+            <h1><?=$event['title']?></h1>
+            <h5>Created by <i><?=$event['name_creator']?></i></h5>
+            <hr>
+            <p> 
+                <?=$event['description']?>
+            </p>
+            </article>
+        </div>
+        
+        <aside class="right-bar">
+            <div class="wrapper">
+            <div>
+                <h3>Comment Section</h3>
+                <div class="status-upload">
+                    <form action="action_submit_comment.php" method="POST">
+                        <input type="hidden" name="id" value=<?= $id ?>>
+                        <img src="img/left-quote.png" alt="left quote mark" class="icon-left">
+                        <textarea name="description" class="text-input" placeholder="Write a comment here..."></textarea>
+                        <img src="img/right-quote.png" alt="right quote mark" class="icon-right">
+                        <button type="submit" class="button"> Comment</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+
+            <?php foreach($comments as $comment) { ?> 
+            <div class="post">
+                <h5><i><?=$comment['name_user']?> </i> commented:</h5>
+                <div class="post-description">
+                    <p><?=$comment['description']?></p>
+                </div>
+                <div class="stats">
+                    <h6 class="text-muted-time"><?=$comment['date'] //colocar em min ?></h6>
+                    <a class="delete" href="action_delete_comment.php"> <i class="fa fa-close"> Remove </i> </a>
+                </div>
+            </div>
+            <?php } ?> 
+        </aside>
+    </div>
+</body>
+                                   

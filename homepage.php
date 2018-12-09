@@ -9,8 +9,16 @@ $mission_tasks=getTasksByMission($curr_mission['id']);
 //print_r($mission_tasks);
 
 $user_tasks=getTasksByUser($_SESSION['name']);
-print_r($user_tasks);
+//print_r($user_tasks);
 
+$completed_tasks=getCompletedTasks($_SESSION['name'],'TRUE');
+print_r("completed");
+var_dump($completed_tasks);
+
+$incompleted_tasks=getCompletedTasks($_SESSION['name'],'FALSE');
+print_r("not completed");
+
+var_dump($incompleted_tasks);
 
 ?>
 
@@ -79,18 +87,26 @@ print_r($user_tasks);
         <form class="todoList" action="action_update_task_list.php" method="POST">
             <h1>Missão #<?= $curr_mission['id'] ?> </h1>
             <div class="items">
-<?php $k=0;
-foreach ($mission_tasks as $task) { 
-$k++;?> 
-                <?php if($user_tasks[$k-1]['completed']===true) { ?> 
-                     <input checked value='<?= $task['id'] ?>' name="tasks[]" id='item.<?=$task['id']?>' type="checkbox">
-                <?php } ?> 
-                <?php if($user_tasks[$k-1]['completed']===false) { ?> 
-                     <input value='<?= $task['id'] ?>' name="tasks[]" id='item.<?=$task['id']?>' type="checkbox">
-                     <?php } ?> 
-                <label for='item.<?=$task['id']?>'><?= $task['description'] ?> </label>
-           
-<?php } ?> 
+        <?php 
+        foreach ($completed_tasks as $completed_task) { 
+        ?> 
+              
+    <input checked value='<?= $completed_task['id'] ?>' name="tasks[]" id='item.<?=$completed_task['id']?>' type="checkbox">
+    <label for='item.<?=$completed_task['id']?>'><?= $completed_task['description'] ?> </label>
+
+     <?php } ?> 
+
+             <?php 
+        foreach ($incompleted_tasks as $incompleted_task) { 
+        ?> 
+              
+    <input value='<?= $incompleted_task['id'] ?>' name="tasks[]" id='item.<?=$incompleted_task['id']?>' type="checkbox">
+    <label for='item.<?=$incompleted_task['id']?>'><?= $incompleted_task['description'] ?> </label>
+
+     <?php } ?> 
+
+
+
                 <h2 class="done">Done</h2>
                 <h2 class="pending">Pending</h2>
 
