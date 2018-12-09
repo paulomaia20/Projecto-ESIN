@@ -21,14 +21,14 @@ body {
   box-shadow: 0 4px 16px #aaa;
   width: 500px;
   margin: 30px auto;
-  border-top: solid 8px teal;
+  border-top: solid 8px rgb(46, 99, 150);
 }
 .todoList > * {
   padding: 10px 20px;
 }
 .todoList h1 {
   margin: 0;
-  background: #fff;
+	background-color:rgba(46, 100, 150, 0.671);; 
   line-height: 1;
 }
 .todoList .items {
@@ -54,7 +54,7 @@ body {
   top: 15%;
   width: 1px;
   height: 70%;
-  border-left: solid 4px teal;
+  border-left: solid 4px rgb(46, 99, 150);
 }
 .todoList h2::after {
   -moz-border-radius: 6px;
@@ -62,7 +62,7 @@ body {
   border-radius: 6px;
   display: block;
   float: right;
-  background: teal;
+  background:rgb(46, 99, 150);
   color: #fff;
   padding: 4px;
   min-width: 1.5em;
@@ -133,6 +133,7 @@ button[type="submit"]{
     order: 4; 
 
 }
+
 
 @-moz-keyframes done {
   0% {

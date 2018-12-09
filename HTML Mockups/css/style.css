@@ -5,8 +5,9 @@ body {
     grid-template-columns: auto auto auto;
     grid-template-rows: auto; */ 
     font-family: 'Merriweather', serif;
-    /*background-color: #ebebeb; */ 
-    margin: 0; 
+    background-color:#B2D9F4;
+    margin: 0;
+    color: #FFFFFF
 }
 
 /* Grid info start */ 
@@ -47,6 +48,26 @@ body {
     margin-right: 0.5rem;
   }
   
+  .button{
+    display:inline-block;
+    border:0.1em solid #FFFFFF;
+    margin-top:1em;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+    background: rgba(72, 185, 250, 0);
+
+}
+.button:hover{
+    color:#B2D9F4;
+    background-color:#FFFFFF;
+}
+
  /* footer {
     grid-area: footer;
     background-color: rgb(43, 43, 43); 
@@ -173,6 +194,7 @@ color: white; /* White text color */
 }
 
 #user_info button {
+  font-weight: 700;
   grid-area: edit; 
   justify-self: center; 
   align-self: top; 
@@ -308,3 +330,8 @@ h1 #level
 { font-size: 0.8em;
   display: inline; 
 font-weight: 300; }
+
+/*FOOTER*/
+.sky{
+  width: 100%;
+}

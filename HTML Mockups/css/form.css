@@ -51,11 +51,7 @@ input[type="submit"]{
     min-height: 3em;
     display:block;
     margin: 1em auto 0 auto;
-    background-color: #00971E;
-    border-color: #00971E;
-    border-style: none; 
-    color: white; 
-    font-weight: 500;
+    font-weight: 700;
     border-radius: 3px;
 }
 
@@ -132,8 +128,27 @@ input[type="submit"]{
 
 .form-end {
 	padding: 2em;
-	border-top: 2px solid #FFFFFF;
-	background: rgb(72,184,250,0.7);
 	text-align: right;
 	color: #ffffff;
+}
+
+.button{
+    display:inline-block;
+    padding:0.5em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin-top:1em;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+    background: rgba(72, 185, 250, 0);
+
+}
+.button:hover{
+    color:#B2D9F4;
+    background-color:#FFFFFF;
 }
