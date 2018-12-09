@@ -2,51 +2,133 @@
     margin:0px;
 }
     body {
+    color: #fff;
     height:100%;
-    background-color:rgb(192, 224, 215);
     margin:0px;
-    color: #ffffff;
+    }
+
+    p{
+        color: #083c66;
+        padding-top: .7em;
+        text-align: justify;
     }
 
     .right-bar {
         float: right;
-        height: 100%;
-        max-width: 30%;
+        width: 30%;
+
     }
 
     .middle-bar {
         display: inline-block;
-        height: 100%;
         margin-left: auto;
         margin-right: auto;
-        max-width: 40%;
-
+        width: 40%;
+         
     }
 
     .left-bar {
         float: left;
-        height: 100%;
-        max-width: 30%;
+        width: 30%;
+
     }
 
     .wrapper{
         size: 100%;
         padding: 1em;
         margin: 1em;
-        background-color: rgb(170, 238, 229);
+        background: rgb(72,184,250,0.7);
         box-shadow: 0 8px 15px rgba(54,79,199,0.1), 0 18px 35px rgba(54,79,199,0.15);
         border-radius: 0.5em;
     }
-
+    
+    .post{
+        margin: .5em;
+    }
+    .post-description {
+        background-color:#bedbf3;
+        border-radius: 0.5em;
+    }
+    
     .post-description p {
         color: #083c66;
         margin:0.3em;
+        padding:1em;
         font-size: 0.8em; 
     }
     
-    .post-description {
-        
-        background-color: rgb(255, 255, 255);
-        border-radius: 0.5em;
+    .event-info{
+        display: inline-block;
+        padding-bottom: .3em;
 
     }
+    .status-upload{
+        text-align: center;
+        margin: .5em;
+        
+    }
+    .button{
+        margin:.5em;
+        }
+
+    .icon-right{
+        float: right;
+        max-width: 20px;
+    }
+    .icon-left{
+        float: left;
+        max-width: 20px;
+    }
+    
+    .wrapper-button{
+        text-align: center;
+    }
+ 
+    .delete{
+        float: right;
+    }
+    .list-participants{
+        margin-top:.5em;
+        text-align: center; 
+    }
+    .participant{
+        display: inline-block;
+        text-align: center;
+        background-color: rgba(33, 112, 177, 0.699);
+        border-radius: 0.5em;
+        margin:.5em;
+        padding-bottom: .5em;
+               
+    }
+    .participant h5{
+        margin-top: .3em;
+    }
+    textarea{
+        resize: vertical;
+        width: 305px;
+        height: 80px;
+        max-width: 100%;
+    }
+
+    .button{
+    display:inline-block;
+    padding:0.5em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin-top:1em;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+    background: rgba(72, 185, 250, 0);
+
+    }
+    button:hover{
+    color:#000000;
+    background-color:#FFFFFF;
+    }
+
+        
