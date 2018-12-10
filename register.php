@@ -21,14 +21,12 @@
 					<p>O nome de utilizador deve conter entre 1 e 20 caracteres; contendo apenas letras de A a Z, números de 0 a 9,
                         hifens ou traços sublinhados, não podendo ser incluso quaisquer termos inapropriados.</p>
                         
-                    <form method="post" action="action_register.php">
-
-					<input type="text" name="name" placeholder="Nome de Utilizador">
-					<input type="text" name="email" placeholder="E-mail">
-					<input type="password" placeholder="Senha" name="password">
-					<input type="password" placeholder="Confirmar senha" name="confirm_password">
-					<input type="submit" value="Inscrever">
-					
+          <form method="post" action="action_register.php">
+						<input type="text" name="name" placeholder="Nome de Utilizador" required pattern="[a-z][a-z0-9]{1,15}" title="Username must must start whith a letter and contain only lowercase letters and numbers!">
+						<input type="text" name="email" placeholder="E-mail" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}" title="Please input a valid email (example@email.com)!">
+						<input type="password" placeholder="Senha" name="password" required pattern="[^s?]{6,}" title="Six or more characters">
+						<input type="password" placeholder="Confirmar senha" name="confirm_password" required pattern=".{6,}" title="Six or more characters">
+						<input type="submit" value="Inscrever">
 					</form>
 
 <?php  	
