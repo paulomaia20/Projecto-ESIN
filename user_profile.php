@@ -1,3 +1,14 @@
+<?php
+  include ('config/init.php');
+  include ('database/user.php');
+  
+  if (isset($_GET['name']))
+   { $username=$_GET['name'];
+     $user_info = getUserInfo($username);
+   }
+  ?> 
+
+
 <html lang="en-US">
 
 <head>
@@ -33,7 +44,7 @@
             <img alt="avatar" src="img/avatar_1.jpg">
 
             <div id="first_row">
-                <h1>username1</h1>
+                <h1> <?=$username?> </h1>
                 <h2>Experience points</h2>
                 <div id="skillbar">
                     <div class="skills" style="height: 100%; width:80%; background-color: rgb(189, 189, 74);">80%</div>
@@ -43,8 +54,8 @@
 
             <article id="level">Nível N</article>
             <article id="date">Utilizador desde 23/11/2018</article>
-            <article id="email">email@email.com</article>
-            <button class="button" type="button"><i class="fa fa-edit"></i>Editar perfil</button><br>
+            <article id="email"><?=$user_info['email']?></article>
+        <button class="button" type="button"><a href='edit_profile.php?name=<?=$username?>'><i class="fa fa-edit"></i>Editar perfil</a></button><br>
         </nav>
 
         <main id="latest_news">
@@ -80,12 +91,6 @@
                 <li><span><img alt="badge" width="20" height="20" src="img/badges/badge_2.png"> Water</span> </li>
             </ul>
         </aside>
-
-
-        <!--  <footer>
-           
-            &copy; 2016 RecycleABit <br> <a href="#">Info page</a>
-        </footer> -->
 
     </div>
 

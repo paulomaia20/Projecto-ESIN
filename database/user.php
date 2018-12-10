@@ -27,4 +27,12 @@
     $stmt->execute(array($username, $email, $hash));
   }
 
+  function getUserInfo($name) {
+    //Function for getting info for the user profile
+    global $conn;
+
+    $stmt = $conn->prepare('SELECT * FROM users WHERE name=?');
+    $stmt->execute(array($name));
+  }
+
 ?>
