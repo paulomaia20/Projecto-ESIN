@@ -73,6 +73,15 @@ CREATE TABLE comment(
   name_user VARCHAR REFERENCES users(name)
 );
 
+-- Participantes_Evento(#id_evento->evento, #name_user->User)
+ CREATE TABLE event_participants(
+ id_event INTEGER REFERENCES event(id),
+ name_user VARCHAR REFERENCES users(name)
+ );
+
+ALTER TABLE ONLY event_participants
+ADD CONSTRAINT event_user_pkey PRIMARY KEY
+(id_event, name_user);
 
 
 ALTER TABLE ONLY userpoints
@@ -141,3 +150,6 @@ INSERT INTO event(title, description, place, type, name_creator) VALUES ('Title1
 INSERT INTO event(title, description, place, type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup','Teste1','Joao');
 
 INSERT INTO comment(description,id_event,name_user) VALUES('lorem ipsumlorem ipsum lorem ipsumlorem ipsumlorem ipsum ', 1, 'paulo');
+
+INSERT INTO event_participants(id_event,name_user) VALUES (1,'paulo');
+INSERT INTO event_participants(id_event,name_user) VALUES (1,'joao');

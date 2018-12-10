@@ -8,6 +8,10 @@
   $event = getEventById($id);
   $comments=getCommentsByEventId($id);
   $nr_comments=getNrCommentsInEvent($id);
+
+  $nr_participants=getNrParticipantsInEvent($id);
+  $participants=selectAllParticipants($id);
+
 }
 
 ?> 
@@ -48,13 +52,16 @@
         
         <div class="left-bar">
             <div class="wrapper">
-            <h3 class="event-info">Number of participants - </h3> <h5 class="event-info"> 1029</h5> <img src="img/man-user.png" alt="user" class="icon-right">
+            <h3 class="event-info">Number of participants - </h3> <h5 class="event-info"> <?= $nr_participants['part_nr'] ?> </h5> <img src="img/man-user.png" alt="user" class="icon-right">
             <br>
             <h3 class="event-info">Number of comments - </h3> <h5 class="event-info"> <?=$nr_comments['cmt_nr']?> </h5><img src="img/chat.png" alt="comment" class="icon-right">
             <br>
             <h3 class="event-info">Venue - </h3><h5 class="event-info"> <?= $event['place'] ?> </h5><img src="img/localization.png" alt="venue" class="icon-right">
             <div class="wrapper-button">
+            <form action = "action_participate_event.php" method = "POST">
+                <input type="hidden" name="eventID" value='<?=$event['id']?>'>
                 <button type="submit" class="button"> Participate</button>
+            </form>     
                 <button type="submit" class="button"> Edit details</button>
             </div>
             </div>
@@ -62,15 +69,11 @@
             <div class="wrapper">
                 <h3>Participants</h3>
                 <div class="list-participants">
+                    <?php foreach($participants as $participant) { ?>
                 <div class="participant">
-                    <img src="img/avatar_1.jpg" alt="avatar_1"> <h6> Username_1 </h6>
+                    <img src="img/avatar_1.jpg" alt="avatar_1"> <h6> <?=$participant['name']?> </h6>
                 </div>
-                <div class="participant">
-                    <img src="img/avatar_1.jpg" alt="avatar_1"> <h6> Username_2 </h6>
-                </div>
-                <div class="participant">
-                    <img src="img/avatar_1.jpg" alt="avatar_1"> <h6> Username_3 </h6>
-                </div>
+          <?php } ?> 
                 </div>
             </div>
                 
@@ -109,8 +112,8 @@
                     <p><?=$comment['description']?></p>
                 </div>
                 <div class="stats">
-                    <h6 class="text-muted-time"><?=$comment['date'] //colocar em min ?></h6>
-                    <a class="delete" href="action_delete_comment.php"> <i class="fa fa-close"> Remove </i> </a>
+                    <h6 class="text-muted-time"><?=$comment['date']  //colocar em min ?></h6>
+                    <a class="delete" href='action_delete_comment.php?id=<?=$comment['id']."&creator_name=".$event['name_creator']."&user_name=".$comment['name_user']."&event_id=".$event['id']?>'> <i class="fa fa-close"> Remove </i> </a>
                 </div>
             </div>
             <?php } ?> 

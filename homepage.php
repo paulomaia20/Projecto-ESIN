@@ -96,7 +96,7 @@ var_dump($incompleted_tasks);
 
      <?php } ?> 
 
-             <?php 
+         <?php 
         foreach ($incompleted_tasks as $incompleted_task) { 
         ?> 
               
