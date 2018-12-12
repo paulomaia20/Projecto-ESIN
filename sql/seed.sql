@@ -60,8 +60,9 @@ CREATE TABLE userpoints(
   id SERIAL PRIMARY KEY,
   name_user VARCHAR,
   id_mission INTEGER,
-  id_event_type INTEGER,
-  score INTEGER
+  id_event INTEGER,
+  score INTEGER,
+  completion_date DATE default CURRENT_DATE 
 );
 
  -- Comment(id, description, #id_event->event, #name_user->user) 
@@ -79,10 +80,25 @@ CREATE TABLE comment(
  name_user VARCHAR REFERENCES users(name)
  );
 
+ -- UserPoints(id, id_user->user, id_missao->missao, id_tipo_evento->tipo_evento, points) 
+ CREATE TABLE userpoints(
+ id SERIAL PRIMARY KEY,
+ name_user VARCHAR REFERENCES users(name),
+ id_mission INTEGER REFERENCES mission(id),
+ id_event INTEGER REFERENCES event(id)
+ );
+
+  -- Badge
+ CREATE TABLE badge(
+ name VARCHAR PRIMARY KEY,
+ path_img VARCHAR,
+ id_mission INTEGER REFERENCES mission(id)
+ );
+
+
 ALTER TABLE ONLY event_participants
 ADD CONSTRAINT event_user_pkey PRIMARY KEY
 (id_event, name_user);
-
 
 ALTER TABLE ONLY userpoints
  ADD CONSTRAINT userpoints_name_user FOREIGN KEY (name_user)
@@ -141,6 +157,13 @@ INSERT INTO user_mission (id_mission, name_user) VALUES (1, 'paulo');
 INSERT INTO user_tasks (id_task, name_user) VALUES (1,'paulo');
 INSERT INTO user_tasks (id_task, name_user) VALUES (2,'paulo');
 INSERT INTO user_tasks (id_task, name_user) VALUES (3,'paulo');
+INSERT INTO user_tasks (id_task, name_user) VALUES (4,'paulo');
+INSERT INTO user_tasks (id_task, name_user) VALUES (5,'paulo');
+INSERT INTO user_tasks (id_task, name_user) VALUES (6,'paulo');
+/* ISTO AINDA É MANUAL... METER NO CÓDIGO 
+Sabendo mission, sabemos tasks
+Sabendo user, sabemos missions
+Inserimos isto com um ciclo for*/ 
 
 INSERT INTO event(title, description, place, type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup','Teste1','Joao');
 INSERT INTO event(title, description, place, type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup','Teste1','Joao');
@@ -153,3 +176,6 @@ INSERT INTO comment(description,id_event,name_user) VALUES('lorem ipsumlorem ips
 
 INSERT INTO event_participants(id_event,name_user) VALUES (1,'paulo');
 INSERT INTO event_participants(id_event,name_user) VALUES (1,'joao');
+
+INSERT INTO badge(name, path_img, id_mission) VALUES('Plastic Bag','plastic_bag.png',1);
+INSERT INTO badge(name, path_img, id_mission) VALUES('Newspaper','newspaper.png',2);

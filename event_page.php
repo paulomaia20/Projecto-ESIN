@@ -9,11 +9,9 @@
   $event = getEventById($id);
   $comments=getCommentsByEventId($id);
   $nr_comments=getNrCommentsInEvent($id);
-
   $nr_participants=getNrParticipantsInEvent($id);
   $participants=selectAllParticipants($id);
-
-  $participant_in_event=checkIfParticipantInEvent($name);
+  $participant_in_event=checkIfParticipantInEvent($_SESSION['name']);
 
 }
 else{
@@ -101,7 +99,9 @@ include('templates/header.php');
                 <div class="stats">
                     <h6 class="text-muted-time"><?=$comment['date']  //colocar em min ?></h6>
                     <!-- Tornar visível apenas se for o criador ou o proprio user --> 
+                    <?php if($comment['name_user']===$_SESSION['name'] || $comment['name_user']===$event['name_creator'] ) { ?>
                     <a class="delete" href='action_delete_comment.php?id=<?=$comment['id']."&creator_name=".$event['name_creator']."&user_name=".$comment['name_user']."&event_id=".$event['id']?>'> <i class="fa fa-close"> Remove </i> </a>
+                    <?php } ?>  
                 </div>
             </div>
             <?php } ?> 

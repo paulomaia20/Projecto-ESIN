@@ -7,20 +7,31 @@ include('database/missions.php');
 $curr_mission=getMissionByUser($_SESSION['name']);
 //print_r($curr_mission);
 
+$iscompleted=checkAllTasksCompleted($_SESSION['name'],$curr_mission['id']);
+if($iscompleted==true)
+{
+    //insertNextMission($_SESSION['name'], $curr_mission['id'], $iscompleted);
+    $curr_mission=getMissionByUser($_SESSION['name']); //Get new curr mission
+}
+
 $mission_tasks=getTasksByMission($curr_mission['id']);
 //print_r($mission_tasks);
 
 $user_tasks=getTasksByUser($_SESSION['name']);
 //print_r($user_tasks);
 
-$completed_tasks=getCompletedTasks($_SESSION['name'],'TRUE');
-print_r("completed");
+$completed_tasks=getCompletedTasks($_SESSION['name'],'TRUE',$curr_mission['id']);
+//print_r("completed");
 var_dump($completed_tasks);
 
-$incompleted_tasks=getCompletedTasks($_SESSION['name'],'FALSE');
-print_r("not completed");
+$incompleted_tasks=getCompletedTasks($_SESSION['name'],'FALSE',$curr_mission['id']);
+//print_r("not completed");
+//var_dump($incompleted_tasks);
+//print_r("alltaskscompleted?");
 
-var_dump($incompleted_tasks);
+//var_dump($iscompleted);
+
+$badges=getBadgesInMission($curr_mission['id']);
 
 ?>
 
@@ -95,8 +106,6 @@ var_dump($incompleted_tasks);
 
      <?php } ?> 
 
-
-
                 <h2 class="done">Done</h2>
                 <h2 class="pending">Pending</h2>
 
@@ -111,8 +120,10 @@ var_dump($incompleted_tasks);
         <h1>Recompensa da missão</h1>
         <div class="rewards">
             <ul>
-                <li>500 pontos de experiência</li>
-                <li>Badge Rock</li>
+                <li><?= $curr_mission['score'] ?> pontos de experiência</li>
+                <?php foreach($badges as $badge) { ?> 
+                     <li><img alt="badge" src='img/<?=$badge['path_img']?>'> <?=$badge['name']  ?> Badge</li>
+                <?php } ?>
             </ul>
         </div>
 

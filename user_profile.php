@@ -7,6 +7,10 @@
    { $username=$_GET['name'];
      $user_info = getUserInfo($username);
    }
+
+   else {
+       header('Location: homepage.php');
+   }
   ?> 
 
 
