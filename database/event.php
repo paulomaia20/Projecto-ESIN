@@ -109,4 +109,12 @@
         return $stmt->fetch();
       }
 
+      function checkIfParticipantInEvent($name) {
+        global $conn;
+        $stmt = $conn->prepare('SELECT * FROM event_participants WHERE name_user = ?');
+                                
+        $stmt->execute(array($name));
+        return $stmt->fetch();
+      }
+
 ?>

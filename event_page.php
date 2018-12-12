@@ -13,6 +13,8 @@
   $nr_participants=getNrParticipantsInEvent($id);
   $participants=selectAllParticipants($id);
 
+  $participant_in_event=checkIfParticipantInEvent($name);
+
 }
 else{
     header('Location: homepage.php');
@@ -42,9 +44,12 @@ include('templates/header.php');
             <div class="wrapper-button">
             <form action = "action_participate_event.php" method = "POST">
                 <input type="hidden" name="eventID" value='<?=$event['id']?>'>
+               <?php if(!isset($participant_in_event)) { ?> 
                 <button type="submit" class="button"> Participate</button>
+                <?php } ?> 
             </form>     
-                <button type="submit" class="button"> Edit details</button>
+            <button class="button" type="button"><a href='edit_event.php?id=<?=$event['id']?>'>Editar evento</a></button><br>
+
             </div>
             </div>
             

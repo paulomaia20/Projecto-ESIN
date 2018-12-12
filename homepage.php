@@ -27,7 +27,7 @@ var_dump($incompleted_tasks);
 <html lang="en-US">
 
 <head>
-    <title>RecycleABit - Profile</title>
+    <title>RecycleABit - Homepagex</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
