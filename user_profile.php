@@ -27,15 +27,8 @@
 
       <header class="header-container">
             <!-- Header content -->
-            <div class="main-navbar">
-                <a class="navbar-brand" href="#"><b>Recycle</b>ABit</a>
-                <ul>
-                    <li><a href="#" class="active" title="My profile">Meu perfil</a></li>
-                    <li><a href="#" title="New event">Novo evento</a></li>
-                    <li><a href="#" title="Next events">Eventos</a></li>
-                    <li><a href="#" title="Log out">Sair</a></li> 
-               </ul>
-            </div>
+            <?php include('templates/navbar.php'); ?> 
+
         </header>
         
         <div class="container">

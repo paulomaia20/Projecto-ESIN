@@ -4,6 +4,9 @@
   include('templates/navbar.php');
 ?>
 
+<link href="css/mainstyle.css" rel="stylesheet" type="text/css">
+</head>
+
 <body>
 	<img id="skyline" src="img/theskyline4.jpg" alt="Sky Line">
 	<div id="section1">

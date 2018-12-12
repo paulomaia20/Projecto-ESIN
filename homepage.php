@@ -43,20 +43,8 @@ var_dump($incompleted_tasks);
 
     <header class="header-container">
         <!-- Header content -->
-        <div class="main-navbar">
-            <a class="navbar-brand" href="#"><b>Recycle</b>ABit</a>
-            <ul>
+        <?php include('templates/navbar.php'); ?> 
 
-                <li>
-                    <input type="text" placeholder="Pesquisa de eventos">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </li>
-
-                <li><a href="#" title="New event">Novo evento</a></li>
-                <li><a href="#" class="active" title="My profile">Meu perfil</a></li>
-                <li><a href="action_logout.php" title="Log out">Sair</a></li>
-            </ul>
-        </div>
     </header>
 
     <section id="user-info">

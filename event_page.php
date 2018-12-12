@@ -14,41 +14,21 @@
   $participants=selectAllParticipants($id);
 
 }
+else{
+    header('Location: homepage.php');
+}
 
+include('templates/header.php');
 ?> 
-
-<html lang="en-US">
-
-<head>
     <title>RecycleABit - Event Page</title>
-    <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/style_withoutgridlayout.css">
-
     <link rel="stylesheet" href="css/event_page.css">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,800" rel="stylesheet">
-    <link href="css/navbar.css" rel="stylesheet" type="text/css">
-
 </head>
 
 <body>
         <header class="header-container">
                 <!-- Header content -->
-                <div class="main-navbar">
-                    <a class="navbar-brand" href="#"><b>Recycle</b>ABit</a>
-                    <ul>
-                        <li>
-                        <input type="text" placeholder="Pesquisa de eventos">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                        </li>
-    
-                        <li><a href="#" title="New event">Novo evento</a></li>
-                        <li><a href="#" class="active" title="My profile">Meu perfil</a></li>
-                        <li><a href="#" title="Log out">Sair</a></li> 
-                    </ul>
-                </div>
+                <?php include('templates/navbar.php'); ?> 
         </header>                       
         
         <div class="left-bar">
@@ -58,6 +38,7 @@
             <h3 class="event-info">Number of comments - </h3> <h5 class="event-info"> <?=$nr_comments['cmt_nr']?> </h5><img src="img/chat.png" alt="comment" class="icon-right">
             <br>
             <h3 class="event-info">Venue - </h3><h5 class="event-info"> <?= $event['place'] ?> </h5><img src="img/localization.png" alt="venue" class="icon-right">
+          
             <div class="wrapper-button">
             <form action = "action_participate_event.php" method = "POST">
                 <input type="hidden" name="eventID" value='<?=$event['id']?>'>
