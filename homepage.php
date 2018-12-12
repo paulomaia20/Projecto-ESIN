@@ -1,5 +1,7 @@
 <?php
 include('config/init.php');
+include('config/checkLogin.php');
+
 include('database/missions.php');
 
 $curr_mission=getMissionByUser($_SESSION['name']);

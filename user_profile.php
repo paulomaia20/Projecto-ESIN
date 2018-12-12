@@ -1,5 +1,6 @@
 <?php
   include ('config/init.php');
+  include('config/checkLogin.php');
   include ('database/user.php');
   
   if (isset($_GET['name']))
