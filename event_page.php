@@ -94,8 +94,8 @@ include('templates/header.php');
                     </form>
                 </div>
 
-                    <div id="pagination">
-       <?php if($comment_page!==1) { ?> 
+       <div id="pagination">
+       <?php if($comment_page!=1) { ?> 
             <a href='event_page.php?cmt_page=<?=($comment_page-1)."&id=".$event['id']?>'>&lt;</a>
        <?php } ?> 
              <?=$comment_page?> 
