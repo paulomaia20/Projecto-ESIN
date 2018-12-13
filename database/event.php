@@ -20,13 +20,16 @@
     return $stmt->fetch();
   }
 
-  function getCommentsByEventId($id) {
+  function getCommentsByEventId($id, $page) {
     global $conn;
+    $limit_per_page=3;
     $stmt = $conn->prepare('SELECT comment.id, comment.description, comment.date, comment.name_user
                             FROM comment
                             JOIN event ON comment.id_event=event.id
-                            WHERE event.id=?');
-    $stmt->execute(array($id));
+                            WHERE event.id=?
+                            ORDER BY date ASC
+                            LIMIT 3 OFFSET ?');
+    $stmt->execute(array($id, ($page-1) * $limit_per_page));
     return $stmt->fetchAll();
   }
 

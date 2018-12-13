@@ -6,8 +6,14 @@
   if(isset($_GET['id']))
   {
   $id = $_GET['id'];
+  
+  if(isset($_GET['cmt_page']))
+    $comment_page=$_GET['cmt_page'];
+  else
+      $comment_page=1;
+  
   $event = getEventById($id);
-  $comments=getCommentsByEventId($id);
+  $comments=getCommentsByEventId($id, $comment_page);
   $nr_comments=getNrCommentsInEvent($id);
   $nr_participants=getNrParticipantsInEvent($id);
   $participants=selectAllParticipants($id);
@@ -87,6 +93,16 @@ include('templates/header.php');
                         <button type="submit" class="button"> Comment</button>
                     </form>
                 </div>
+
+                    <div id="pagination">
+       <?php if($comment_page!==1) { ?> 
+            <a href='event_page.php?cmt_page=<?=($comment_page-1)."&id=".$event['id']?>'>&lt;</a>
+       <?php } ?> 
+             <?=$comment_page?> 
+             <a href='event_page.php?cmt_page=<?=($comment_page+1)."&id=".$event['id']?>'>&gt;</a>
+    </div>
+
+
             </div>
             <hr>
 
