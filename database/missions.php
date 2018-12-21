@@ -25,7 +25,7 @@ function getMissionByUser($name) {
                            FROM task
                            JOIN mission ON task.id_mission=mission.id
                            WHERE mission.id = ?
-                          ORDER BY task.id DESC;
+                          ORDER BY task.id ASC;
                            ');
     $stmt->execute(array($id_mission));
     return $stmt->fetchAll();
@@ -54,7 +54,7 @@ function getMissionByUser($name) {
                             JOIN task ON task.id=user_progress.id_task
                             WHERE user_progress.name_user=?
                             AND task.id_mission=?
-                            ORDER BY user_progress.id_task DESC;                 
+                            ORDER BY user_progress.id_task ASC;                 
                           ');
 
                           //Incomplete! 
@@ -86,11 +86,13 @@ function getMissionByUser($name) {
   function getIncompleteTasks($username, $id_mission) {
     
     $all_tasks=getTasksByMission($id_mission);
+    //var_dump($all_tasks);
+   // var_dump("split");
     $completed_tasks=getCompletedTasks($username, $id_mission);
+  //  var_dump($completed_tasks);
 
     //$incomplete_tasks=array_diff(array_map('serialize',$all_tasks), array_map('serialize',$completed_tasks));
-   // $incomplete_tasks=arrayRecursiveDiff($all_tasks, $completed_tasks);
-
+    $incomplete_tasks=arrayRecursiveDiff($all_tasks, $completed_tasks);
     return $incomplete_tasks;
   }
 
@@ -103,7 +105,7 @@ function getMissionByUser($name) {
                             JOIN ON 
 
 
-                           ORDER BY id_task DESC;                 
+                           ORDER BY id_task ASC;                 
                           ');
 
                           //Incomplete! 
@@ -123,9 +125,13 @@ function getMissionByUser($name) {
     //Vai buscar a missão atual de um dado utilizador, à tabela user mission. 
    
       $stmt = $conn->prepare('INSERT INTO user_progress(name_user,id_task)
-                          VALUES(?,?)');
+                          SELECT ?,?
+                          WHERE
+                           NOT EXISTS (
+                            SELECT id_task FROM user_progress WHERE id_task = ?
+                              );');
     
-     $stmt->execute(array($username,$task_id));
+     $stmt->execute(array($username,$task_id,$task_id));
 
     return $stmt->fetchAll();  
   }
@@ -133,8 +139,8 @@ function getMissionByUser($name) {
   function checkAllTasksCompleted($completed_tasks, $mission_tasks) {
     global $conn;
  
-     if($completed_tasks==$mission_tasks)
-      return true; 
+     if($completed_tasks===$mission_tasks)
+        return true; 
   return false; 
   }
 

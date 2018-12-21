@@ -6,24 +6,27 @@ include('database/missions.php');
 
 // Get current mission for the logged user
 $curr_mission=getMissionByUser($_SESSION['name']);
+
+$mission_tasks=getTasksByMission($curr_mission['id']);
 //print_r($curr_mission);
 $completed_tasks=getCompletedTasks($_SESSION['name'],$curr_mission['id']);
-print_r($completed_tasks);
+//print_r($completed_tasks);
 
 $incompleted_tasks=getIncompleteTasks($_SESSION['name'],$curr_mission['id']);
-print_r($incompleted_tasks);
+//print_r($incompleted_tasks);
 //$incompleted_tasks=$completed_tasks;
 
-$iscompleted=checkAllTasksCompleted($completed_tasks,$incompleted_tasks);
+$iscompleted=checkAllTasksCompleted($completed_tasks,$mission_tasks);
+var_dump($iscompleted);
 
-/*if($iscompleted==true)
+if($iscompleted==true)
 {
-    //insertNextMission($_SESSION['name'], $curr_mission['id'], $iscompleted);
+    insertNextMission($_SESSION['name'], $curr_mission['id']);
     $curr_mission=getMissionByUser($_SESSION['name']); //Get new curr mission
     $completed_tasks=getCompletedTasks($_SESSION['name'],$curr_mission['id']);
     $incompleted_tasks=getIncompleteTasks($_SESSION['name'],$curr_mission['id']);
-} */ 
-
+} 
+var_dump($curr_mission);
 
 
 
