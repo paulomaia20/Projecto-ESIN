@@ -17,10 +17,7 @@
             <a class="navbar-brand" href="#"><b>Recycle</b>ABit</a>
             <ul>
 
-                <li>
-                    <input type="text" placeholder="Pesquisa de eventos">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </li>
+                <li><a href="#" title="Search">Pesquisa</a></li>
 
                 <li><a href="#" title="New event">Novo evento</a></li>
                 <li><a href="#" class="active" title="My profile">Meu perfil</a></li>
