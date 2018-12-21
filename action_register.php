@@ -4,11 +4,11 @@
 
   $username = strip_tags($_POST['name']); //Removes HTML from a string
   $password = $_POST['password'];
-  $email = $_POST['email']; //Tentar com o strip_tags
+  $email = strip_tags($_POST['email']); //Tentar com o strip_tags
 
   if (!$username || !$password || !$email) {
     $_SESSION['error_message'] = 'All fields are mandatory!';
-    $_SESSION['form_values'] = $_POST;
+   //$_SESSION['form_values'] = $_POST;
    die(header('Location: register.php'));
   }
 
@@ -23,14 +23,11 @@
        $_SESSION['error_message'] = 'Username already exists!';
     } 
     else
-      $_SESSION['error_message'] = 'FAILED!';
+      $_SESSION['error_message'] = 'Registration failed for unknown reason!';
 
-    $_SESSION['form_values'] = $_POST;
-   // echo $e; para debugging 
-     
-
+    //$_SESSION['form_values'] = $_POST;
     die(header('Location: register.php'));
   }
 
-  header('Location: templates/header.php');
+  header('Location: login.php');
 ?>

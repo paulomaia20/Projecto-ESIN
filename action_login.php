@@ -6,7 +6,6 @@
   $password = $_POST['password'];
 
   if (isValidUser($username, $password)) {
-    session_start(); //Não sei se é preciso - aparece no init.php 
     $_SESSION['success_message'] = 'Login successful!';
     $_SESSION['name'] = $username;
 

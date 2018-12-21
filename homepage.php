@@ -4,32 +4,28 @@ include('config/checkLogin.php');
 
 include('database/missions.php');
 
+// Get current mission for the logged user
 $curr_mission=getMissionByUser($_SESSION['name']);
 //print_r($curr_mission);
+$completed_tasks=getCompletedTasks($_SESSION['name'],$curr_mission['id']);
+print_r($completed_tasks);
 
-$iscompleted=checkAllTasksCompleted($_SESSION['name'],$curr_mission['id']);
-if($iscompleted==true)
+$incompleted_tasks=getIncompleteTasks($_SESSION['name'],$curr_mission['id']);
+print_r($incompleted_tasks);
+//$incompleted_tasks=$completed_tasks;
+
+$iscompleted=checkAllTasksCompleted($completed_tasks,$incompleted_tasks);
+
+/*if($iscompleted==true)
 {
     //insertNextMission($_SESSION['name'], $curr_mission['id'], $iscompleted);
     $curr_mission=getMissionByUser($_SESSION['name']); //Get new curr mission
-}
+    $completed_tasks=getCompletedTasks($_SESSION['name'],$curr_mission['id']);
+    $incompleted_tasks=getIncompleteTasks($_SESSION['name'],$curr_mission['id']);
+} */ 
 
-$mission_tasks=getTasksByMission($curr_mission['id']);
-//print_r($mission_tasks);
 
-$user_tasks=getTasksByUser($_SESSION['name']);
-//print_r($user_tasks);
 
-$completed_tasks=getCompletedTasks($_SESSION['name'],'TRUE',$curr_mission['id']);
-//print_r("completed");
-var_dump($completed_tasks);
-
-$incompleted_tasks=getCompletedTasks($_SESSION['name'],'FALSE',$curr_mission['id']);
-//print_r("not completed");
-//var_dump($incompleted_tasks);
-//print_r("alltaskscompleted?");
-
-//var_dump($iscompleted);
 
 $badges=getBadgesInMission($curr_mission['id']);
 

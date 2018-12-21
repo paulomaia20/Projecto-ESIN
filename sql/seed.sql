@@ -49,10 +49,11 @@
  );
 
    -- Tarefas_user(#id_user->user, #id_task->task)
- CREATE TABLE user_tasks(
- id_task INTEGER,
- name_user VARCHAR,
- completed boolean DEFAULT false
+ CREATE TABLE user_progress(
+ id SERIAL PRIMARY KEY,
+ id_task INTEGER REFERENCES task(id),
+ name_user VARCHAR REFERENCES users(name),
+ id_event INTEGER REFERENCES event(id)
  );
 
  -- UserPoints(id, id_user->user, id_missao->missao, id_tipo_evento->tipo_evento, points) 
@@ -109,7 +110,7 @@ ALTER TABLE ONLY userpoints
 REFERENCES mission(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
-ALTER TABLE ONLY user_tasks 
+/*ALTER TABLE ONLY user_tasks 
 ADD CONSTRAINT user_tasks_mission_pkey PRIMARY KEY
 (id_task, name_user);
 
@@ -119,7 +120,7 @@ REFERENCES task(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY user_tasks 
  ADD CONSTRAINT user_tasks_user_name_fkey FOREIGN KEY (name_user)
-REFERENCES users(name) ON UPDATE CASCADE ON DELETE CASCADE;
+REFERENCES users(name) ON UPDATE CASCADE ON DELETE CASCADE; */ 
 
 ALTER TABLE ONLY task
  ADD CONSTRAINT id_mission_fkey FOREIGN KEY (id_mission)
@@ -154,12 +155,6 @@ INSERT INTO event_type(id,type,score)  VALUES(3,'Teste3', 6);
 
 INSERT INTO user_mission (id_mission, name_user) VALUES (1, 'paulo');
 
-INSERT INTO user_tasks (id_task, name_user) VALUES (1,'paulo');
-INSERT INTO user_tasks (id_task, name_user) VALUES (2,'paulo');
-INSERT INTO user_tasks (id_task, name_user) VALUES (3,'paulo');
-INSERT INTO user_tasks (id_task, name_user) VALUES (4,'paulo');
-INSERT INTO user_tasks (id_task, name_user) VALUES (5,'paulo');
-INSERT INTO user_tasks (id_task, name_user) VALUES (6,'paulo');
 /* ISTO AINDA É MANUAL... METER NO CÓDIGO 
 Sabendo mission, sabemos tasks
 Sabendo user, sabemos missions

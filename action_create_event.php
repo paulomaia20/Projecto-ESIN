@@ -11,7 +11,6 @@
 
   if (!$title || !$place || !$type) {
     $_SESSION['error_message'] = 'You did not fill all mandatory fields!';
-    //die(header('Location: create_event.php'));
     die(header('Location: create_event.php'));
   }
 
@@ -19,16 +18,8 @@
     createEvent($title, $date, $body, $place, $type, $name_creator);
     $_SESSION['success_message'] = 'Created event!';
   } catch (PDOException $e ) {
-    echo $e;
-  /*  if (strpos($e->getMessage(), 'users_pkey') !== false)
-      $_SESSION['error_message'] = 'Username already exists!';
-    else
-      $_SESSION['error_message'] = 'FAILED!';
+    $_SESSION['error_message'] = 'An error ocurred!';
+    die(header('Location: create_event.php'));
 
-    $_SESSION['form_values'] = $_POST; */ 
-
-  //  die(header('Location: register.php'));
   }
-
- // header('Location: templates/header.php');
 ?>
