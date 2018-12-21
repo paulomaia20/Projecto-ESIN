@@ -112,11 +112,13 @@
         return $stmt->fetch();
       }
 
-      function checkIfParticipantInEvent($name) {
+      function checkIfParticipantInEvent($name, $event_id) {
         global $conn;
-        $stmt = $conn->prepare('SELECT * FROM event_participants WHERE name_user = ?');
+        //acabar query 
+        $stmt = $conn->prepare('SELECT * FROM event_participants WHERE name_user = ?
+        AND id_event=?');
                                 
-        $stmt->execute(array($name));
+        $stmt->execute(array($name,$event_id));
         return $stmt->fetch();
       }
 

@@ -147,14 +147,9 @@ function getMissionByUser($name) {
   function insertNextMission($username, $id_old_mission) {
     global $conn;
  
-   
       //Insert completed mission
       $stmt = $conn->prepare('INSERT INTO user_mission(id_mission, name_user) VALUES(?,?) '); 
       $stmt->execute(array($id_old_mission+1,$username));
-
-      //Get new mission's tasks
-      //... 
-
     
   }
 

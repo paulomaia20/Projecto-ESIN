@@ -17,7 +17,8 @@
   $nr_comments=getNrCommentsInEvent($id);
   $nr_participants=getNrParticipantsInEvent($id);
   $participants=selectAllParticipants($id);
-  $participant_in_event=checkIfParticipantInEvent($_SESSION['name']);
+  $participant_in_event=checkIfParticipantInEvent($_SESSION['name'],$id);
+  var_dump($participant_in_event);
 
 }
 else{
@@ -48,7 +49,7 @@ include('templates/header.php');
             <div class="wrapper-button">
             <form action = "action_participate_event.php" method = "POST">
                 <input type="hidden" name="eventID" value='<?=$event['id']?>'>
-               <?php if(!isset($participant_in_event)) { ?> 
+               <?php if($participant_in_event==false) { ?> 
                 <button type="submit" class="button"> Participate</button>
                 <?php } ?> 
             </form>     

@@ -16,8 +16,7 @@
     try {
     addComment($description, $name_creator, $id);}
     catch (PDOException $e ) {
-        die(header('Location: event_page.php?id='.$id);
-      );
+        die(header('Location: event_page.php?id='.$id));
     }
   }
 
