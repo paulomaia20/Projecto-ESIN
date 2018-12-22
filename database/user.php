@@ -35,4 +35,91 @@
     $stmt->execute(array($name));
   }
 
+  function getLatestBadges($name) {
+    //Function for getting info for the user profile
+    global $conn;
+
+    $stmt = $conn->prepare('SELECT badge.name, badge.path_img 
+                            FROM user_mission
+                            JOIN badge USING(id_mission)
+                            WHERE name_user=?
+                            ORDER BY id_mission DESC
+                            OFFSET 1
+                            LIMIT 5
+                            '); //Can't count badge of current mission
+    $stmt->execute(array($name));
+    return $stmt->fetchAll();
+  }
+
+  function getLatestMissions($name) {
+    //Function for getting info for the user profile
+    global $conn;
+
+    $stmt = $conn->prepare('SELECT user_mission.id_mission
+                            FROM user_mission
+                             WHERE name_user=?
+                            ORDER BY id_mission DESC
+                            OFFSET 1
+                            LIMIT 5
+                            '); //Can't count badge of current mission
+    $stmt->execute(array($name));
+    return $stmt->fetchAll();
+  }
+
+  function getLatestEvents($name) {
+    //Function for getting info for the user profile
+    global $conn;
+
+    $stmt = $conn->prepare('SELECT event.title, event.date, event.id
+                            FROM event_participants
+                            JOIN event ON event_participants.id_event=event.id
+                            WHERE event_participants.name_user=?
+                            ORDER BY event.date DESC
+                            LIMIT 5
+                            '); 
+    $stmt->execute(array($name));
+    return $stmt->fetchAll();
+  }
+
+  function getTotalScore($name) {
+    //acabar
+    global $conn;
+
+    //Score from missions
+    $stmt = $conn->prepare('SELECT SUM(score) AS score
+                            FROM (SELECT * FROM user_mission
+                            JOIN mission ON user_mission.id_mission=mission.id
+                            ORDER BY id_mission DESC
+                            OFFSET 1) AS sbqry                           
+                            GROUP BY sbqry.name_user
+                            HAVING(sbqry.name_user=?)
+                            '); 
+    $stmt->execute(array($name));
+    $missions_score=$stmt->fetch();
+
+      //Score from events
+      $stmt = $conn->prepare('SELECT SUM(sbqry.evt_score) AS score
+                            FROM (
+                            SELECT event_type.score AS evt_score, name_user FROM event_participants
+                            JOIN event ON event_participants.id_event=event.id
+                            JOIN event_type ON event.id_type=event_type.id
+                            ) AS sbqry                           
+                            GROUP BY sbqry.name_user
+                            HAVING(sbqry.name_user=?)
+      '); 
+     $stmt->execute(array($name));
+     $events_score=$stmt->fetch();
+
+    return ($missions_score['score'] + $events_score['score']);
+  }
+
+  function getLevelFromTotalScore($score) {
+    //acabar
+    global $conn;
+
+    $stmt = $conn->prepare(''); 
+    $stmt->execute(array($name));
+    return $stmt->fetchAll();
+  }
+
 ?>

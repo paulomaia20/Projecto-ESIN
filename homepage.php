@@ -1,23 +1,18 @@
 <?php
 include('config/init.php');
 include('config/checkLogin.php');
-
 include('database/missions.php');
+include('database/user.php');
 
 // Get current mission for the logged user
 $curr_mission=getMissionByUser($_SESSION['name']);
 
 $mission_tasks=getTasksByMission($curr_mission['id']);
-//print_r($curr_mission);
 $completed_tasks=getCompletedTasks($_SESSION['name'],$curr_mission['id']);
-//print_r($completed_tasks);
 
 $incompleted_tasks=getIncompleteTasks($_SESSION['name'],$curr_mission['id']);
-//print_r($incompleted_tasks);
-//$incompleted_tasks=$completed_tasks;
 
 $iscompleted=checkAllTasksCompleted($completed_tasks,$mission_tasks);
-var_dump($iscompleted);
 
 if($iscompleted==true)
 {
@@ -26,12 +21,9 @@ if($iscompleted==true)
     $completed_tasks=getCompletedTasks($_SESSION['name'],$curr_mission['id']);
     $incompleted_tasks=getIncompleteTasks($_SESSION['name'],$curr_mission['id']);
 } 
-var_dump($curr_mission);
-
-
 
 $badges=getBadgesInMission($curr_mission['id']);
-
+$latest_badge=getLatestBadges($_SESSION['name'])[0];
 ?>
 
 <html lang="en-US">
@@ -72,10 +64,9 @@ $badges=getBadgesInMission($curr_mission['id']);
 
 
         <div class="past-rewards">
-            <h1>Últimas recompensas</h2>
+            <h1>Última recompensa</h2>
                 <ul>
-                    <li><i class="fa fa-arrow-right"></i>Fire badge</li>
-                    <li><i class="fa fa-arrow-right"></i>Earth badge</li>
+                    <li><i class="fa fa-arrow-right"></i><?=$latest_badge['name']?></li>
                 </ul>
             </div>
 

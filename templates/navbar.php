@@ -18,7 +18,6 @@
             <ul>
 
                 <li><a href="#" title="Search">Pesquisa</a></li>
-
                 <li><a href="#" title="New event">Novo evento</a></li>
                 <li><a href="#" class="active" title="My profile">Meu perfil</a></li>
                 <li><a href="action_logout.php" title="Log out">Sair</a></li>

@@ -5,6 +5,14 @@
  password VARCHAR NOT NULL
  );
 
+ -- Tipo_evento(id, tipo, pontuação)
+
+ CREATE TABLE event_type(
+ id SERIAL PRIMARY KEY,
+ type VARCHAR NOT NULL,
+ score INT
+ );
+
 -- Evento(id, nome, data, descricao, local, pontuacao, #id_criador->user)
 
  CREATE TABLE event(
@@ -13,18 +21,12 @@
  date DATE default CURRENT_DATE, 
  description VARCHAR,
  place VARCHAR,
- type VARCHAR,
+ id_type INTEGER REFERENCES event_type(id),
  score INT,
  name_creator VARCHAR
  );
 
- -- Tipo_evento(id, tipo, pontuação)
 
- CREATE TABLE event_type(
- id SERIAL PRIMARY KEY,
- type VARCHAR NOT NULL,
- score INT
- );
 
 -- Missao(id, pontuação, descrição)
   CREATE TABLE mission(
@@ -96,6 +98,12 @@ CREATE TABLE comment(
  id_mission INTEGER REFERENCES mission(id)
  );
 
+   -- Level
+ CREATE TABLE level(
+ id_level INTEGER PRIMARY KEY,
+ min_score INTEGER
+ );
+
 
 ALTER TABLE ONLY event_participants
 ADD CONSTRAINT event_user_pkey PRIMARY KEY
@@ -138,9 +146,14 @@ ALTER TABLE ONLY user_mission
  ADD CONSTRAINT user_mission_id_user_fkey FOREIGN KEY (name_user)
 REFERENCES users(name) ON UPDATE CASCADE ON DELETE CASCADE;
 
+INSERT INTO level(id_level, min_score) VALUES(1,10);
+INSERT INTO level(id_level, min_score) VALUES(2,70);
+INSERT INTO level(id_level, min_score) VALUES(3,110);
+INSERT INTO level(id_level, min_score) VALUES(4,170);
 
 INSERT INTO mission(score, description) VALUES(30,'descricao missao 1');
 INSERT INTO mission(score, description) VALUES(40,'descricao missao 2');
+INSERT INTO mission(score, description) VALUES(50,'descricao missao 3');
 
 INSERT INTO task(description,completed, id_mission) VALUES('task1_m1',false,1);
 INSERT INTO task(description,completed, id_mission) VALUES('task2_m1',false,1);
@@ -155,17 +168,10 @@ INSERT INTO event_type(id,type,score)  VALUES(3,'Teste3', 6);
 
 INSERT INTO user_mission (id_mission, name_user) VALUES (1, 'paulo');
 
-/* ISTO AINDA É MANUAL... METER NO CÓDIGO 
-Sabendo mission, sabemos tasks
-Sabendo user, sabemos missions
-Inserimos isto com um ciclo for*/ 
+/* ISTO AINDA É MANUAL... METER NO CÓDIGO */ 
 
-INSERT INTO event(title, description, place, type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup','Teste1','Joao');
-INSERT INTO event(title, description, place, type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup','Teste1','Joao');
-INSERT INTO event(title, description, place, type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup','Teste1','Joao');
-INSERT INTO event(title, description, place, type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup','Teste1','Joao');
-INSERT INTO event(title, description, place, type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup','Teste1','Joao');
-INSERT INTO event(title, description, place, type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup','Teste1','Joao');
+INSERT INTO event(title, description, place, id_type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup',1,'Joao');
+INSERT INTO event(title, description, place, id_type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup',2,'Joao');
 
 INSERT INTO comment(description,id_event,name_user) VALUES('lorem ipsumlorem ipsum lorem ipsumlorem ipsumlorem ipsum ', 1, 'paulo');
 
