@@ -25,9 +25,7 @@
 
 
   function createUser($username, $password, $email) {
-
-    //FALTA ADICIONAR A PRIMEIRA MISSÃO 
-    
+   
     global $conn;
 
     $options = [
@@ -103,16 +101,20 @@
     //acabar
     global $conn;
 
-    //Score from missions
+    //Score from missions - Não está a fazer bem o offset 
     $stmt = $conn->prepare('SELECT SUM(score) AS score
-                            FROM (SELECT * FROM user_mission
+                            FROM (
+                            SELECT * FROM user_mission
                             JOIN mission ON user_mission.id_mission=mission.id
+                            WHERE name_user = ?
                             ORDER BY id_mission DESC
-                            OFFSET 1) AS sbqry                           
+                 
+                            OFFSET 1
+                            ) AS sbqry                           
                             GROUP BY sbqry.name_user
                             HAVING(sbqry.name_user=?)
                             '); 
-    $stmt->execute(array($name));
+    $stmt->execute(array($name,$name));
     $missions_score=$stmt->fetch();
 
       //Score from events
