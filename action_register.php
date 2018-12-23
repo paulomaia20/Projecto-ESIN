@@ -5,9 +5,16 @@
   $username = strip_tags($_POST['name']); //Removes HTML from a string
   $password = $_POST['password'];
   $email = strip_tags($_POST['email']); //Tentar com o strip_tags
+  $confirm_pw=$_POST['confirm_password'];
 
   if (!$username || !$password || !$email) {
     $_SESSION['error_message'] = 'All fields are mandatory!';
+   //$_SESSION['form_values'] = $_POST;
+   die(header('Location: register.php'));
+  }
+
+  elseif ($password!==$confirm_pw) {
+    $_SESSION['error_message'] = 'Passwords do not match';
    //$_SESSION['form_values'] = $_POST;
    die(header('Location: register.php'));
   }

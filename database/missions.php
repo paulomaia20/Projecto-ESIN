@@ -11,8 +11,9 @@ function getMissionByUser($name) {
                            FROM user_mission
                            JOIN mission ON user_mission.id_mission=mission.id
                            JOIN users ON user_mission.name_user=users.name
+                           WHERE users.name=?
                            ORDER BY mission.id DESC;');
-    $stmt->execute();
+    $stmt->execute(array($name));
     return $stmt->fetch();
   
   }
@@ -30,20 +31,6 @@ function getMissionByUser($name) {
     $stmt->execute(array($id_mission));
     return $stmt->fetchAll();
   }
-
-  /*function getTasksByUser($username) {
-    global $conn;
-
-    //Vai buscar as tarefas atuais de um dado utilizador 
-    $stmt = $conn->prepare('SELECT users.name, user_tasks.completed, user_tasks.id_task
-                           FROM user_tasks
-                           JOIN users ON user_tasks.name_user=users.name
-                           JOIN task ON user_tasks.id_task=task.id
-                           WHERE users.name = ?
-                           ORDER BY id_task DESC;');
-    $stmt->execute(array($username));
-    return $stmt->fetchAll();
-  } */ 
 
   function getCompletedTasks($username, $id_mission) {
     global $conn;
@@ -86,31 +73,9 @@ function getMissionByUser($name) {
   function getIncompleteTasks($username, $id_mission) {
     
     $all_tasks=getTasksByMission($id_mission);
-    //var_dump($all_tasks);
-   // var_dump("split");
     $completed_tasks=getCompletedTasks($username, $id_mission);
-  //  var_dump($completed_tasks);
-
-    //$incomplete_tasks=array_diff(array_map('serialize',$all_tasks), array_map('serialize',$completed_tasks));
     $incomplete_tasks=arrayRecursiveDiff($all_tasks, $completed_tasks);
     return $incomplete_tasks;
-  }
-
-  function getUserTasksProgress($username, $completed, $id_mission) {
-    global $conn;
-
-    //Vai buscar as tarefas atuais de um dado utilizador 
-    $stmt = $conn->prepare('SELECT *
-                            FROM user_progress
-                            JOIN ON 
-
-
-                           ORDER BY id_task ASC;                 
-                          ');
-
-                          //Incomplete! 
-    $stmt->execute(array($username, $id_mission));
-    return $stmt->fetchAll();
   }
 
   
@@ -119,8 +84,7 @@ function getMissionByUser($name) {
     global $conn;
 
     //UPDATE - Atualiza a lista de tarefas ao pressionar o botão submit.
-    //Se o user tiver terminado todas as tarefas, insere na base de dados a 
-    //próxima missão (id da última +1) e atualiza a sua pontuação. 
+
 
     //Vai buscar a missão atual de um dado utilizador, à tabela user mission. 
    

@@ -6,7 +6,6 @@ include('database/user.php');
 
 // Get current mission for the logged user
 $curr_mission=getMissionByUser($_SESSION['name']);
-
 $mission_tasks=getTasksByMission($curr_mission['id']);
 $completed_tasks=getCompletedTasks($_SESSION['name'],$curr_mission['id']);
 
@@ -22,7 +21,9 @@ if($iscompleted==true)
 } 
 
 $badges=getBadgesInMission($curr_mission['id']);
-$latest_badge=getLatestBadges($_SESSION['name'])[0];
+
+if(!isset($latest_badge))
+    $latest_badge=getLatestBadges($_SESSION['name'])[0];
 $score=getTotalScore($_SESSION['name']);
 $level=getLevelFromTotalScore($score);
 ?>

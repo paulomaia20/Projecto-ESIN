@@ -63,7 +63,7 @@ $event_types=getAllEventTypes();
 <?php  	
  if(isset($_ERROR_MESSAGE))
     {
-        echo $_ERROR_MESSAGE; //ver init.php 
+        echo $_ERROR_MESSAGE; 
 	}  
 	?> 
 </div>

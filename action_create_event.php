@@ -2,9 +2,9 @@
   include ('config/init.php');
   include ('database/event.php');
 
-  $title = strip_tags($_POST['title']); //Removes HTML from a string
+  $title = $_POST['title']; //Removes HTML from a string
   $date = $_POST['date']; 
-  $body = strip_tags($_POST['body']); 
+  $body = $_POST['body']; 
   $place = $_POST['place']; 
   $type = $_POST['type']; 
   $name_creator= $_SESSION['name']; 
