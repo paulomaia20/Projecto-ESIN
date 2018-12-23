@@ -12,6 +12,7 @@ $completed_tasks=getCompletedTasks($_SESSION['name'],$curr_mission['id']);
 $incompleted_tasks=getIncompleteTasks($_SESSION['name'],$curr_mission['id']);
 
 $iscompleted=checkAllTasksCompleted($completed_tasks,$mission_tasks);
+
 if($iscompleted==true)
 {
     insertNextMission($_SESSION['name'], $curr_mission['id']);
@@ -26,24 +27,19 @@ if(!isset($latest_badge))
     $latest_badge=getLatestBadges($_SESSION['name'])[0];
 $score=getTotalScore($_SESSION['name']);
 $level=getLevelFromTotalScore($score);
+
+include('templates/header.php');
+
 ?>
 
-<html lang="en-US">
-
-<head>
     <title>RecycleABit - Homepage</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,800" rel="stylesheet">
-
-    <link href="css/navbar.css" rel="stylesheet" type="text/css">
     <link href="css/tasks.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
+
 
     <header class="header-container">
         <!-- Header content -->
@@ -51,6 +47,7 @@ $level=getLevelFromTotalScore($score);
 
     </header>
 
+<div class="wrapper"> 
     <section id="user-info">
 
         <img alt="avatar" src="img/avatar_1.jpg">
@@ -63,7 +60,6 @@ $level=getLevelFromTotalScore($score);
             </div>
 
         </div>
-
 
         <div class="past-rewards">
             <h1>Última recompensa</h2>
@@ -121,6 +117,7 @@ $level=getLevelFromTotalScore($score);
 
     </section>
 </div>
+                </div>
 
 
 </body>

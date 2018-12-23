@@ -68,36 +68,7 @@ body {
     background-color:#FFFFFF;
 }
 
- /* footer {
-    grid-area: footer;
-    background-color: rgb(43, 43, 43); 
-    color: white;
-    align-self: center;
-    justify-self: center;   
-  } */ 
 
-  @media (max-width: 768px) { /* MUDAR ISTO, ESTÁ FEIO */ 
-    .container {
-      grid-template-areas:
-        "header"
-        "nav"
-        "content"
-        "side"
-        "footer";
-  
-      grid-template-columns: 1fr;
-      grid-template-rows:
-        auto /* Header */
-        minmax(75px, auto) /* Nav */
-        1fr /* Content */
-        minmax(75px, auto) /* Sidebar */
-        auto; /* Footer */
-    }
-  
-    nav, aside {
-      margin: 0;
-    }
-  }
 
 /* Grid info end */
 
@@ -154,12 +125,12 @@ img {
   border-radius: 10px;
 }
 
-#first_row h1{
+#first_row h1, .first_row_profile h1{
   font-size: 1.2em;
   padding-left: 0.2em;
 }
 
-#first_row h2{
+#first_row h2, .first_row_profile h2{
   font-size: 0.5em;
   padding-left: 0.2em;
 }
@@ -330,6 +301,55 @@ h1 #level
 { font-size: 0.8em;
   display: inline; 
 font-weight: 300; }
+
+/* RESPONSIVE */ 
+
+@media (max-width: 1200px)
+{
+
+  .container {
+    display: block;
+  }
+
+  #user-info,#user_info,#second-row,#first_row{
+    display:block;
+  }
+
+  #skillbar{
+    width: 50%; 
+    max-width: 100%; /* Full width */
+  }
+  .wrapper {
+    display: grid;
+
+    grid-template-areas:
+      "row1" 
+      "row2"
+      "row3";
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto;
+  }
+
+  .first_row_profile {
+    padding-left: 0; 
+    }
+
+  #first_row {
+  grid-area: row1;
+  width: 100%; 
+  padding-left: 15em; 
+  }
+
+
+
+  .past-rewards {
+    grid-area: row2;
+    }
+
+    #second-row {
+      grid-area: row3;
+      }
+}
 
 /*FOOTER*/
 .sky{

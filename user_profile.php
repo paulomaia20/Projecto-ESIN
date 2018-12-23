@@ -37,7 +37,7 @@ include('templates/header.php');
 
             <img alt="avatar" src="img/avatar_1.jpg">
 
-            <div id="first_row">
+            <div class="first_row_profile">
                 <h1> <?=$username?> </h1>
                 <h2>Experience points - <?= $score ?> </h2>
                 <div id="skillbar">

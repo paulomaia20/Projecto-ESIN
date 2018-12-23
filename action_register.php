@@ -9,14 +9,12 @@
 
   if (!$username || !$password || !$email) {
     $_SESSION['error_message'] = 'All fields are mandatory!';
-   //$_SESSION['form_values'] = $_POST;
-   die(header('Location: register.php'));
+    die(header('Location: register.php'));
   }
 
   elseif ($password!==$confirm_pw) {
     $_SESSION['error_message'] = 'Passwords do not match';
-   //$_SESSION['form_values'] = $_POST;
-   die(header('Location: register.php'));
+    die(header('Location: register.php'));
   }
 
   try {

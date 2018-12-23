@@ -130,10 +130,17 @@
     background: rgba(72, 185, 250, 0);
 
     }
-    button:hover{
+    button a:hover{
     color:#000000;
-    background-color:#FFFFFF;
     }
+
+    button a{ 
+          text-decoration: none; 
+        }
+
+    a, a:visited {
+        color: white;
+    }  
 
       /*FOOTER*/
     .sky{
