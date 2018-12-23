@@ -13,7 +13,6 @@ $completed_tasks=getCompletedTasks($_SESSION['name'],$curr_mission['id']);
 $incompleted_tasks=getIncompleteTasks($_SESSION['name'],$curr_mission['id']);
 
 $iscompleted=checkAllTasksCompleted($completed_tasks,$mission_tasks);
-
 if($iscompleted==true)
 {
     insertNextMission($_SESSION['name'], $curr_mission['id']);
@@ -24,6 +23,8 @@ if($iscompleted==true)
 
 $badges=getBadgesInMission($curr_mission['id']);
 $latest_badge=getLatestBadges($_SESSION['name'])[0];
+$score=getTotalScore($_SESSION['name']);
+$level=getLevelFromTotalScore($score);
 ?>
 
 <html lang="en-US">
@@ -53,11 +54,11 @@ $latest_badge=getLatestBadges($_SESSION['name'])[0];
 
         <img alt="avatar" src="img/avatar_1.jpg">
         <div id="first_row">
-            <h1> <?php echo $_SESSION['name'] ?>  <p id="level">Nível N</p></h1> 
+            <h1> <?php echo $_SESSION['name'] ?>  <p id="level">Nível <?=$level[0]?> </p></h1> 
 
-            <h2>Experience points</h2>
+            <h2>Experience points  - <?=$score ?> </h2>
             <div id="skillbar">
-                <div class="skills" style="height: 100%; width:80%; background-color: rgb(189, 189, 74);">80%</div>
+            <div class="skills" style='height: 100%; width:<?=100*round($score/$level[1],2)?>%; background-color: rgb(189, 189, 74);'><?=100*round($score/$level[1],2).'%'?></div>
             </div>
 
         </div>

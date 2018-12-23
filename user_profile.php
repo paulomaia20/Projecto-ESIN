@@ -3,15 +3,21 @@
   include('config/checkLogin.php');
   include ('database/user.php');
   
-  if (isset($_GET['name']))
-   { $username=$_GET['name'];
+  if (( isset($_GET['name']) && userExists($_GET['name'])) === true)
+   { 
+       
+    $username=$_GET['name'];
      $user_info = getUserInfo($username);
      $latest_missions=getLatestMissions($username);
      $latest_events=getLatestEvents($username);
      $badges=getLatestBadges($username);
+     var_dump($badges);
 
      $score=getTotalScore($username);
-     var_dump($score);
+     $level=getLevelFromTotalScore($score);
+    // var_dump($score);
+    // var_dump($level);
+
    }
 
    else {
@@ -51,12 +57,12 @@
                 <h1> <?=$username?> </h1>
                 <h2>Experience points - <?=$score ?> </h2>
                 <div id="skillbar">
-                    <div class="skills" style="height: 100%; width:80%; background-color: rgb(189, 189, 74);">80%</div>
+                    <div class="skills" style='height: 100%; width:<?=100*round($score/$level[1],2)?>%; background-color: rgb(189, 189, 74);'><?=100*round($score/$level[1],2).'%'?></div>
                 </div>
             </div>
             <article id="about_me">Sobre mim</article>
 
-            <article id="level">Nível N</article>
+            <article id="level">Nível <?=$level[0]?></article>
             <article id="date">Utilizador desde 23/11/2018</article>
             <article id="email"><?=$user_info['email']?></article>
             <?php if($username==$_SESSION['name']) { ?> 

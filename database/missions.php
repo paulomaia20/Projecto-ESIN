@@ -139,8 +139,9 @@ function getMissionByUser($name) {
   function checkAllTasksCompleted($completed_tasks, $mission_tasks) {
     global $conn;
  
-     if($completed_tasks===$mission_tasks)
+     if($completed_tasks==$mission_tasks && !empty($mission_tasks) )
         return true; 
+
   return false; 
   }
 

@@ -11,6 +11,19 @@
     return $user !== false && password_verify($password, $user['password']);
   }
 
+  function userExists($username) {
+    global $conn;
+
+    $stmt = $conn->prepare('SELECT * FROM users WHERE name = ?');
+    $stmt->execute(array($username));
+    
+    $user = $stmt->fetch();
+
+    return $user !== false;
+  }
+
+
+
   function createUser($username, $password, $email) {
 
     //FALTA ADICIONAR A PRIMEIRA MISSÃO 
@@ -117,9 +130,18 @@
     //acabar
     global $conn;
 
-    $stmt = $conn->prepare(''); 
-    $stmt->execute(array($name));
-    return $stmt->fetchAll();
+    $stmt = $conn->prepare('SELECT * FROM level'); 
+    $stmt->execute();
+    $levels = $stmt->fetchAll();
+
+    foreach($levels as $level)
+    {
+      if($level['min_score'] > $score) 
+      { //O score mínimo está acima do score atual, logo ele está no nível anterior
+        return (array($level['id_level']-1,$level['min_score']));
+
+      }
+    }
   }
 
 ?>
