@@ -4,39 +4,24 @@
   include ('database/user.php');
   
   if (( isset($_GET['name']) && userExists($_GET['name'])) === true)
-   { 
-       
+   {    
     $username=$_GET['name'];
      $user_info = getUserInfo($username);
      $latest_missions=getLatestMissions($username);
      $latest_events=getLatestEvents($username);
      $badges=getLatestBadges($username);
-     var_dump($badges);
-
      $score=getTotalScore($username);
      $level=getLevelFromTotalScore($score);
-    // var_dump($score);
-    // var_dump($level);
-
    }
 
    else {
        header('Location: homepage.php');
    }
-  ?> 
-
-
-<html lang="en-US">
-
-<head>
+ 
+include('templates/header.php');  
+ ?> 
     <title>RecycleABit - Profile</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,800" rel="stylesheet">
-    <link href="css/navbar.css" rel="stylesheet" type="text/css">
-
 </head>
 
 <body>
@@ -44,8 +29,7 @@
       <header class="header-container">
             <!-- Header content -->
             <?php include('templates/navbar.php'); ?> 
-
-        </header>
+      </header>
         
         <div class="container">
 
@@ -55,9 +39,9 @@
 
             <div id="first_row">
                 <h1> <?=$username?> </h1>
-                <h2>Experience points - <?=$score ?> </h2>
+                <h2>Experience points - <?= $score ?> </h2>
                 <div id="skillbar">
-                    <div class="skills" style='height: 100%; width:<?=100*round($score/$level[1],2)?>%; background-color: rgb(189, 189, 74);'><?=100*round($score/$level[1],2).'%'?></div>
+                    <div class="skills" style='width:<?=100*round($score/$level[1],2)?>%; background-color: rgb(189, 189, 74);'><?=100*round($score/$level[1],2).'%'?></div>
                 </div>
             </div>
             <article id="about_me">Sobre mim</article>

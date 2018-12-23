@@ -2,6 +2,8 @@
  CREATE TABLE users(
  name VARCHAR PRIMARY KEY,
  email VARCHAR NOT NULL,
+ path_photo VARCHAR,
+ regist_date DATE default CURRENT_DATE,
  password VARCHAR NOT NULL
  );
 

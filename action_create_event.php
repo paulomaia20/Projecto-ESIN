@@ -14,6 +14,8 @@
     die(header('Location: create_event.php'));
   }
 
+  //Verificar se a data é anterior à de hoje!!!
+  
   try {
     $id=createEvent($title, $date, $body, $place, $type, $name_creator);
     $_SESSION['success_message'] = 'Created event!';

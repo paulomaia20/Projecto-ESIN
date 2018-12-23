@@ -5,6 +5,8 @@
 ?>
 
 <link href="css/mainstyle.css" rel="stylesheet" type="text/css">
+<link href="css/form.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -15,7 +17,7 @@
 
 	<div class="row">
 		<div id="introduction" class="col-6">
-			Este joguinho vai nos valer 3000€, por isso inscreve-te! Para alem disso vamos ter 20. Junta-te a nós!
+		 Junta-te a nós!
 		</div>
 		<div class="col-6">
 			<div class="loginbox">
@@ -32,12 +34,14 @@
 						<input type="submit" value="Inscrever">
 					</form>
 
+<div class="error_message">
 <?php  	
  if(isset($_ERROR_MESSAGE))
     {
         echo $_ERROR_MESSAGE; //ver init.php 
 	}  
 	?> 
+</div>
 				</div>
 			</div>
 		</div>

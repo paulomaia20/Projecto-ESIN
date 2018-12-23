@@ -18,7 +18,6 @@
   $nr_participants=getNrParticipantsInEvent($id);
   $participants=selectAllParticipants($id);
   $participant_in_event=checkIfParticipantInEvent($_SESSION['name'],$id);
-  var_dump($participant_in_event);
 
 }
 else{
