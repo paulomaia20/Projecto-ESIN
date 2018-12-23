@@ -44,7 +44,7 @@ include('templates/header.php');
             <br>
             <h3 class="event-info">Number of comments - </h3> <h5 class="event-info"> <?=$nr_comments['cmt_nr']?> </h5><img src="img/chat.png" alt="comment" class="icon-right">
             <br>
-            <h3 class="event-info">Venue - </h3><h5 class="event-info"> <?= $event['place'] ?> </h5><img src="img/localization.png" alt="venue" class="icon-right">
+            <h3 class="event-info">Venue -  </h3><h5 class="event-info"> <?=  $event['place'] ?> </h5><img src="img/localization.png" alt="venue" class="icon-right">
           
             <div class="wrapper-button">
             <form action = "action_participate_event.php" method = "POST">
@@ -63,7 +63,7 @@ include('templates/header.php');
                 <div class="list-participants">
                     <?php foreach($participants as $participant) { ?>
                 <div class="participant">
-                    <img src="img/avatar_1.jpg" alt="avatar_1"> <h6> <?=$participant['name']?> </h6>
+                    <img src="img/avatar_1.jpg" alt="avatar_1"> <h6> <a href='user_profile.php?name=<?=$participant['name']?>'> <?=$participant['name']?> </a> </h6>
                 </div>
           <?php } ?> 
                 </div>
@@ -73,7 +73,7 @@ include('templates/header.php');
         <div class="middle-bar">
             <article class="wrapper">
             <h1><?=$event['title']?></h1>
-            <h5>Created by <i><?=$event['name_creator']?></i></h5>
+            <h5>Created by <i> <a href='user_profile.php?name=<?=$event['name_creator']?>'> <?=$event['name_creator']?> </a></i></h5>
             <hr>
             <p> 
                 <?=$event['description']?>
@@ -109,7 +109,7 @@ include('templates/header.php');
 
             <?php foreach($comments as $comment) { ?> 
             <div class="post">
-                <h5><i><?=$comment['name_user']?> </i> commented:</h5>
+                <h5><i><a href='user_profile.php?name=<?=$comment['name_user']?>'> <?=$comment['name_user']?></a> </i> commented:</h5>
                 <div class="post-description">
                     <p><?=$comment['description']?></p>
                 </div>

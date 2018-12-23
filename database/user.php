@@ -38,6 +38,11 @@
 
     $stmt = $conn->prepare('INSERT INTO users VALUES (?, ?, ?)');
     $stmt->execute(array($username, $email, $hash));
+
+    //Add first mission 
+    $stmt = $conn->prepare('INSERT INTO user_mission(id_mission, name_user) VALUES (?, ?)');
+    $stmt->execute(array(1,$username));
+
   }
 
   function getUserInfo($name) {

@@ -30,7 +30,7 @@ $level=getLevelFromTotalScore($score);
 <html lang="en-US">
 
 <head>
-    <title>RecycleABit - Homepagex</title>
+    <title>RecycleABit - Homepage</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>

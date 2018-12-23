@@ -25,20 +25,7 @@ $event_types=getAllEventTypes();
 
         <header class="header-container">
             <!-- Header content -->
-            <div class="main-navbar">
-                <a class="navbar-brand" href="#"><b>Recycle</b>ABit</a>
-                <ul>
-
-                    <li>
-                        <input type="text" placeholder="Pesquisa de eventos">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </li>
-
-                    <li><a href="#" title="New event">Novo evento</a></li>
-                    <li><a href="#" class="active" title="My profile">Meu perfil</a></li>
-                    <li><a href="#" title="Log out">Sair</a></li>
-                </ul>
-            </div>
+            <?php include('templates/navbar.php'); ?> 
         </header>
 
         <div class="form-box">
@@ -70,8 +57,8 @@ $event_types=getAllEventTypes();
                     <input type="text" placeholder="Local" name="place" id="place"> <br> 
                     <label for="type">Tipo de evento*:</label>
                     <select name="type">
-                    <?php foreach ($event_types as $type) {?>   <!-- Change to id!! -->                
-                    <option value='<?= $type['type']; ?>'> <?= $type['type']."+".$type['score']."XP";  ?>   </option>
+                    <?php foreach ($event_types as $type) {?>   
+                    <option value='<?= $type['id'] ?>'> <?= $type['type']."+".$type['score']."XP";  ?>   </option>
                     <?php } ?> 
                     </select> <br>
                 </div>

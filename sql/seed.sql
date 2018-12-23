@@ -10,6 +10,7 @@
  CREATE TABLE event_type(
  id SERIAL PRIMARY KEY,
  type VARCHAR NOT NULL,
+ path_img VARCHAR NOT NULL,
  score INT
  );
 
@@ -162,9 +163,9 @@ INSERT INTO task(description,completed, id_mission) VALUES('task1_m2',false,2);
 INSERT INTO task(description,completed, id_mission) VALUES('task2_m2',false,2);
 INSERT INTO task(description,completed, id_mission) VALUES('task3_m2',false,2);
 
-INSERT INTO event_type(id,type,score)  VALUES(1,'Teste1', 3);
-INSERT INTO event_type(id,type,score)  VALUES(2,'Teste2', 5);
-INSERT INTO event_type(id,type,score)  VALUES(3,'Teste3', 6);
+INSERT INTO event_type(id,type,path_img,score)  VALUES(1,'Apanhar jornais','newspaper.png', 3);
+INSERT INTO event_type(id,type,path_img,score)  VALUES(2,'Apanhar plástico', 'plastic_container.png', 5);
+INSERT INTO event_type(id,type,path_img,score)  VALUES(3,'Apanhar vidro', 'glass_jar.png', 6);
 
 INSERT INTO user_mission (id_mission, name_user) VALUES (1, 'paulo');
 

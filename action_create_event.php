@@ -15,11 +15,14 @@
   }
 
   try {
-    createEvent($title, $date, $body, $place, $type, $name_creator);
+    $id=createEvent($title, $date, $body, $place, $type, $name_creator);
     $_SESSION['success_message'] = 'Created event!';
+
   } catch (PDOException $e ) {
     $_SESSION['error_message'] = 'An error ocurred!';
     die(header('Location: create_event.php'));
 
   }
+
+  header('Location: event_page.php?id='.$id);
 ?>
