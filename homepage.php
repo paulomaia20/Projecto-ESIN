@@ -88,11 +88,11 @@ include('templates/header.php');
          <?php 
         foreach ($incompleted_tasks as $incompleted_task) { 
         ?> 
-              
+               <?php if(!empty($incompleted_task)) { ?>
     <input value='<?= $incompleted_task['id'] ?>' name="tasks[]" id='item.<?=$incompleted_task['id']?>' type="checkbox">
     <label for='item.<?=$incompleted_task['id']?>'><?= $incompleted_task['description'] ?> </label>
-
-     <?php } ?> 
+  
+     <?php  } } ?> 
 
                 <h2 class="done">Done</h2>
                 <h2 class="pending">Pending</h2>

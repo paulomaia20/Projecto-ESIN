@@ -116,7 +116,7 @@
 
       function checkIfParticipantInEvent($name, $event_id) {
         global $conn;
-        //acabar query 
+        
         $stmt = $conn->prepare('SELECT * FROM event_participants WHERE name_user = ?
         AND id_event=?');
                                 
