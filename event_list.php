@@ -35,7 +35,7 @@ else
     </ul>
     </header>
 
-    <div id="pagination">
+    <div class="page" id="pagination" >
         <?php if($page!==1) { ?> 
             <a href="event_list.php?page=<?=$page-1?>">&lt;</a>
        <?php } ?> 
