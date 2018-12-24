@@ -55,7 +55,7 @@
 
         <div class="form-box">
 
-            <form action="action_edit_event.php?id=<?=$id?>.php" method="POST"> 
+            <form action='action_edit_event.php?id=<?=($event['id'])."&name_creator=".$event['name_creator']?>' method="POST"> 
                 <div class="form-top">
                     <div class="form-top-left">
                         <h1> Editar evento </h1>
@@ -70,16 +70,16 @@
 
                 <div class="form-bottom">
                     <label for="title">Nome do evento*:</label>
-                    <input type="text" placeholder="<?=$event['title']?>" name="title" id="title"> <br>
+                    <input type="text" value="<?=$event['title']?>" name="title" id="title"> <br>
 
                     <label for="date">Data do evento*:</label>
                     <input type="date" value="<?=$event['date']?>" name="date" id="date"> <br>
 
                     <label for="body">Descrição do evento:</label>
-                    <textarea name="body" placeholder="<?=$event['body']?>" rows="4" cols="50">  </textarea><br>
+                    <textarea name="body" value="<?=$event['body']?>" rows="4" cols="50">  </textarea><br>
 
                     <label for="place">Local do evento*:</label>
-                    <input type="text" placeholder="<?=$event['place']?>" name="place" id="place"> <br> 
+                    <input type="text" value="<?=$event['place']?>" name="place" id="place"> <br> 
                     <label for="type">Tipo de evento*:</label>
 
                  <select name="type">

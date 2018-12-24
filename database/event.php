@@ -8,11 +8,11 @@
     return $conn->lastInsertID(); 
   }
 
-  function editEvent($title, $date, $body, $place, $type, $name_creator, $id) {
+  function editEvent($title, $date, $body, $place, $type, $name_creator, $user_name, $id ) {
     global $conn;
-    if ($event_creator_name==$user_name || $logged_user_name==$user_name )
+    if ($name_creator==$user_name )
          {
-          $stmt = $conn->prepare('UPDATE event SET (title, date, description, place, type, name_creator) VALUES (?, ?, ?, ?, ?, ?) WHERE id=?');
+          $stmt = $conn->prepare('UPDATE event SET (title, date, description, place, id_type, name_creator) = (?, ?, ?, ?, ?, ?)  WHERE id=?');
           $stmt->execute(array($title, $date, $body, $place, $type, $name_creator, $id));
          }
   }

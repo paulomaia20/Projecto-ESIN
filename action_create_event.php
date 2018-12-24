@@ -14,6 +14,13 @@
     die(header('Location: create_event.php'));
   }
 
+  $now = new DateTime();
+
+  if($date < $now) {
+    $_SESSION['error_message'] = 'Date of the event is in the past';
+    die(header('Location: create_event.php'));
+
+  }
   //Verificar se a data é anterior à de hoje!!!
   
   try {
