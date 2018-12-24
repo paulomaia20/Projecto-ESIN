@@ -2,6 +2,7 @@
     margin:0px;
 }
     body {
+    background-color:#B2D9F4;
     color: #fff;
     height:100%;
     margin:0px;
@@ -69,7 +70,7 @@
     }
     .button{
         margin:.5em;
-        }
+    }
 
     .icon-right{
         float: right;
@@ -100,7 +101,10 @@
         padding-bottom: .5em;
                
     }
-    .participant h5{
+    .participant img{
+        max-width:  90px;
+    }
+    .participant h6{
         margin-top: .3em;
     }
     textarea{
@@ -126,9 +130,21 @@
     background: rgba(72, 185, 250, 0);
 
     }
-    button:hover{
+    button a:hover{
     color:#000000;
-    background-color:#FFFFFF;
     }
+
+    button a{ 
+          text-decoration: none; 
+        }
+
+    a, a:visited {
+        color: white;
+    }  
+
+      /*FOOTER*/
+    .sky{
+        width: 100%;
+      }
 
         

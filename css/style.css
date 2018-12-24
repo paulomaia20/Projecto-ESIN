@@ -5,8 +5,9 @@ body {
     grid-template-columns: auto auto auto;
     grid-template-rows: auto; */ 
     font-family: 'Merriweather', serif;
-    /*background-color: #ebebeb; */ 
-    margin: 0; 
+    background-color:#B2D9F4;
+    margin: 0;
+    color: #FFFFFF
 }
 
 /* Grid info start */ 
@@ -47,36 +48,27 @@ body {
     margin-right: 0.5rem;
   }
   
- /* footer {
-    grid-area: footer;
-    background-color: rgb(43, 43, 43); 
-    color: white;
-    align-self: center;
-    justify-self: center;   
-  } */ 
+  .button{
+    display:inline-block;
+    border:0.1em solid #FFFFFF;
+    margin-top:1em;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+    background: rgba(72, 185, 250, 0);
 
-  @media (max-width: 768px) { /* MUDAR ISTO, ESTÁ FEIO */ 
-    .container {
-      grid-template-areas:
-        "header"
-        "nav"
-        "content"
-        "side"
-        "footer";
-  
-      grid-template-columns: 1fr;
-      grid-template-rows:
-        auto /* Header */
-        minmax(75px, auto) /* Nav */
-        1fr /* Content */
-        minmax(75px, auto) /* Sidebar */
-        auto; /* Footer */
-    }
-  
-    nav, aside {
-      margin: 0;
-    }
-  }
+}
+.button:hover{
+    color:#B2D9F4;
+    background-color:#FFFFFF;
+}
+
+
 
 /* Grid info end */
 
@@ -133,19 +125,19 @@ img {
   border-radius: 10px;
 }
 
-#first_row h1{
+#first_row h1, .first_row_profile h1{
   font-size: 1.2em;
   padding-left: 0.2em;
 }
 
-#first_row h2{
+#first_row h2, .first_row_profile h2{
   font-size: 0.5em;
   padding-left: 0.2em;
 }
 
 #skillbar{
   width: 100%; /* Full width */
-  height: 5%;
+ /* height: 5%; */ 
   background-color: rgb(0, 0, 0); /* Grey background */
   border: 1px solid white; 
 }
@@ -173,6 +165,7 @@ color: white; /* White text color */
 }
 
 #user_info button {
+  font-weight: 700;
   grid-area: edit; 
   justify-self: center; 
   align-self: top; 
@@ -308,3 +301,57 @@ h1 #level
 { font-size: 0.8em;
   display: inline; 
 font-weight: 300; }
+
+/* RESPONSIVE */ 
+
+@media (max-width: 1200px)
+{
+
+  .container {
+    display: block;
+  }
+
+  #user-info,#user_info,#second-row,#first_row{
+    display:block;
+  }
+
+  #skillbar{
+    width: 50%; 
+    max-width: 100%; /* Full width */
+  }
+  .wrapper {
+    display: grid;
+
+    grid-template-areas:
+      "row1" 
+      "row2"
+      "row3";
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto;
+  }
+
+  .first_row_profile {
+    padding-left: 0; 
+    }
+
+  #first_row {
+  grid-area: row1;
+  width: 100%; 
+  padding-left: 15em; 
+  }
+
+
+
+  .past-rewards {
+    grid-area: row2;
+    }
+
+    #second-row {
+      grid-area: row3;
+      }
+}
+
+/*FOOTER*/
+.sky{
+  width: 100%;
+}

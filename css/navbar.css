@@ -6,7 +6,7 @@
 	background-color:#48B8FA; 
 	position:sticky;
 	top: 0;
-	z-index: 999;
+	z-index : 999;
 }
 
 .main-navbar ul{
@@ -66,3 +66,42 @@
 .main-navbar ul li a.active{
 	font-weight: bold;
 }
+
+.main-navbar .icon {
+	display: none;
+  } 
+
+/* RESPONSIVE NAVBAR */ 
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media (max-width: 1200px) {
+	.main-navbar ul  {display: none;}
+	.main-navbar .icon {
+		float: right;
+		display: block;
+	  }
+	
+}
+  
+  /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+  @media (max-width: 1200px) {
+
+	.main-navbar.responsive .icon {
+	  position: absolute;
+	  right: 0;
+	  top: 0;
+	}
+	.main-navbar.responsive ul {
+		display: flex;
+		float: left; 
+		justify-content: right;
+		flex-direction: column;
+		text-align: right;
+	}
+	.main-navbar.responsive ul li {
+		flex-direction: column; 
+		line-height: 0.1em; 
+
+	}
+
+  }

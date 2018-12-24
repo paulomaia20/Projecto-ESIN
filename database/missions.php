@@ -4,13 +4,16 @@ function getMissionByUser($name) {
     global $conn;
 
     //Vai buscar a missão atual de um dado utilizador, à tabela user mission. 
-    //FALTA: Mostrar badge
+    // Como nesta tabela não removemos as missões à medida que ele a vai completando,
+    // ordenamos o id da missão e vamos buscar o primeiro elemento.
 
     $stmt = $conn->prepare('SELECT mission.id, mission.description, mission.score
                            FROM user_mission
                            JOIN mission ON user_mission.id_mission=mission.id
-                           JOIN users ON user_mission.name_user=users.name');
-    $stmt->execute();
+                           JOIN users ON user_mission.name_user=users.name
+                           WHERE users.name=?
+                           ORDER BY mission.id DESC;');
+    $stmt->execute(array($name));
     return $stmt->fetch();
   
   }
@@ -23,39 +26,56 @@ function getMissionByUser($name) {
                            FROM task
                            JOIN mission ON task.id_mission=mission.id
                            WHERE mission.id = ?
+                          ORDER BY task.id ASC;
                            ');
     $stmt->execute(array($id_mission));
     return $stmt->fetchAll();
   }
 
-  function getTasksByUser($username) {
+  function getCompletedTasks($username, $id_mission) {
     global $conn;
 
     //Vai buscar as tarefas atuais de um dado utilizador 
-    $stmt = $conn->prepare('SELECT users.name, user_tasks.completed, user_tasks.id_task
-                           FROM user_tasks
-                           JOIN users ON user_tasks.name_user=users.name
-                           JOIN task ON user_tasks.id_task=task.id
-                           WHERE users.name = ?
-                           ORDER BY id_task DESC;');
-    $stmt->execute(array($username));
+    $stmt = $conn->prepare('SELECT task.id, task.description
+                            FROM user_progress
+                            JOIN task ON task.id=user_progress.id_task
+                            WHERE user_progress.name_user=?
+                            AND task.id_mission=?
+                            ORDER BY user_progress.id_task ASC;                 
+                          ');
+
+                          //Incomplete! 
+    $stmt->execute(array($username, $id_mission));
     return $stmt->fetchAll();
   }
 
-  function getCompletedTasks($username, $completed) {
-    global $conn;
+  function arrayRecursiveDiff($aArray1, $aArray2) { 
+    $aReturn = array(); 
 
-    //Vai buscar as tarefas atuais de um dado utilizador 
-    $stmt = $conn->prepare('SELECT task.description, task.id, user_tasks.completed
-                           FROM user_tasks
-                           JOIN users ON user_tasks.name_user=users.name
-                           JOIN task ON user_tasks.id_task=task.id
-                           WHERE users.name = ?
-                           AND user_tasks.completed=?
-                    
-                          ');
-    $stmt->execute(array($username,$completed));
-    return $stmt->fetchAll();
+    foreach ($aArray1 as $mKey => $mValue) { 
+        if (array_key_exists($mKey, $aArray2)) { 
+            if (is_array($mValue)) { 
+                $aRecursiveDiff = arrayRecursiveDiff($mValue, $aArray2[$mKey]); 
+                if (count($aRecursiveDiff)) { $aReturn[$mKey] = $aRecursiveDiff; } 
+            } else { 
+                if ($mValue != $aArray2[$mKey]) { 
+                    $aReturn[$mKey] = $mValue; 
+                } 
+            } 
+        } else { 
+            $aReturn[$mKey] = $mValue; 
+        } 
+    } 
+
+    return $aReturn; 
+}
+
+  function getIncompleteTasks($username, $id_mission) {
+    
+    $all_tasks=getTasksByMission($id_mission);
+    $completed_tasks=getCompletedTasks($username, $id_mission);
+    $incomplete_tasks=arrayRecursiveDiff($all_tasks, $completed_tasks);
+    return $incomplete_tasks;
   }
 
   
@@ -64,30 +84,49 @@ function getMissionByUser($name) {
     global $conn;
 
     //UPDATE - Atualiza a lista de tarefas ao pressionar o botão submit.
-    //Se o user tiver terminado todas as tarefas, insere na base de dados a 
-    //próxima missão (id da última +1) e atualiza a sua pontuação. 
+
 
     //Vai buscar a missão atual de um dado utilizador, à tabela user mission. 
    
-      $stmt = $conn->prepare('UPDATE user_tasks
-                           SET completed=true
-                           WHERE user_tasks.id_task = ?
-                           AND user_tasks.name_user = ?');
+      $stmt = $conn->prepare('INSERT INTO user_progress(name_user,id_task)
+                          SELECT ?,?
+                          WHERE
+                           NOT EXISTS (
+                            SELECT id_task FROM user_progress WHERE id_task = ?
+                              );');
     
-     $stmt->execute(array($task_id, $username));
+     $stmt->execute(array($username,$task_id,$task_id));
 
     return $stmt->fetchAll();  
   }
 
-  function checkAllTasksCompleted($username, $id_mission) {
+  function checkAllTasksCompleted($completed_tasks, $mission_tasks) {
     global $conn;
  
-   
-      $stmt = $conn->prepare('SELECT *
-      FROM user_tasks'); //INCOMPLETO
-    
+     if($completed_tasks==$mission_tasks && !empty($mission_tasks) )
+        return true; 
 
-     $stmt->execute(array($task_id, $username));
+  return false; 
+  }
+
+  function insertNextMission($username, $id_old_mission) {
+    global $conn;
+ 
+      //Insert completed mission
+      $stmt = $conn->prepare('INSERT INTO user_mission(id_mission, name_user) VALUES(?,?) '); 
+      $stmt->execute(array($id_old_mission+1,$username));
+    
+  }
+
+  function getBadgesInMission($id_mission) {
+    global $conn;
+ 
+      $stmt = $conn->prepare('SELECT *
+      FROM badge 
+      JOIN mission ON badge.id_mission=mission.id
+      WHERE mission.id=?');
+  
+     $stmt->execute(array($id_mission));
 
     return $stmt->fetchAll();  
   }

@@ -1,5 +1,7 @@
 <?php
 include('config/init.php');
+include('config/checkLogin.php');
+
 include('database/event.php');
 
 if (isset($_GET['page']))

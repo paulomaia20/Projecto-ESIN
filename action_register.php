@@ -4,14 +4,17 @@
 
   $username = strip_tags($_POST['name']); //Removes HTML from a string
   $password = $_POST['password'];
-  $email = $_POST['email']; //Tentar com o strip_tags
+  $email = strip_tags($_POST['email']); //Tentar com o strip_tags
+  $confirm_pw=$_POST['confirm_password'];
 
   if (!$username || !$password || !$email) {
     $_SESSION['error_message'] = 'All fields are mandatory!';
-    $_SESSION['form_values'] = $_POST;
-   // die(header('Location: register.php?msg='.$_SESSION['error_message']));
-   die(header('Location: register.php'));
+    die(header('Location: register.php'));
+  }
 
+  elseif ($password!==$confirm_pw) {
+    $_SESSION['error_message'] = 'Passwords do not match';
+    die(header('Location: register.php'));
   }
 
   try {
@@ -25,14 +28,11 @@
        $_SESSION['error_message'] = 'Username already exists!';
     } 
     else
-      $_SESSION['error_message'] = 'FAILED!';
+      $_SESSION['error_message'] = 'Registration failed for unknown reason!';
 
-    $_SESSION['form_values'] = $_POST;
-   // echo $e; para debugging 
-     
-
+    //$_SESSION['form_values'] = $_POST;
     die(header('Location: register.php'));
   }
 
-  header('Location: templates/header.php');
+  header('Location: login.php');
 ?>
