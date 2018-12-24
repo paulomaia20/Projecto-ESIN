@@ -8,6 +8,12 @@
     return $conn->lastInsertID(); 
   }
 
+  function editEvent($title, $date, $body, $place, $type, $name_creator) {
+    global $conn;
+    $stmt = $conn->prepare('UPDATE event (title, date, description, place, type, name_creator) VALUES (?, ?, ?, ?, ?, ?)');
+    $stmt->execute(array($title, $date, $body, $place, $type, $name_creator));
+  }
+
   function getAllEventTypes() {
     global $conn;
     $stmt = $conn->prepare('SELECT * FROM event_type');
