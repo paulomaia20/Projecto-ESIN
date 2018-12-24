@@ -31,6 +31,22 @@
     return $stmt->fetch();
   }
 
+  function getMaxNrPages($event_id) {
+    global $conn;
+    $limit_per_page=3;
+
+    $stmt = $conn->prepare('SELECT COUNT(comment.id) AS cnt
+    FROM comment
+    JOIN event ON comment.id_event=event.id
+    WHERE event.id=?
+ ');
+
+    $stmt->execute(array($event_id));
+    $nr_comments=$stmt->fetch();
+    $max=round($nr_comments['cnt']/$limit_per_page);
+    return $max+1;
+  }
+
   function getCommentsByEventId($id, $page) {
     global $conn;
     $limit_per_page=3;
@@ -125,7 +141,7 @@
 
       function checkIfParticipantInEvent($name, $event_id) {
         global $conn;
-        //acabar query 
+        
         $stmt = $conn->prepare('SELECT * FROM event_participants WHERE name_user = ?
         AND id_event=?');
                                 

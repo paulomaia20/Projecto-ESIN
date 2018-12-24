@@ -70,12 +70,41 @@ function getMissionByUser($name) {
     return $aReturn; 
 }
 
+function check_diff_multi($array1, $array2){
+  $result = array();
+  foreach($array1 as $key => $val) {
+       if(isset($array2[$key])){
+         if(is_array($val) && $array2[$key]){
+             $result[$key] = check_diff_multi($val, $array2[$key]);
+         }
+     } else {
+         $result[$key] = $val;
+     }
+  }
+
+  return $result;
+}
+
   function getIncompleteTasks($username, $id_mission) {
-    
+    global $conn;
     $all_tasks=getTasksByMission($id_mission);
     $completed_tasks=getCompletedTasks($username, $id_mission);
-    $incomplete_tasks=arrayRecursiveDiff($all_tasks, $completed_tasks);
-    return $incomplete_tasks;
+    $incomplete_tasks=array_diff(array_column($all_tasks,'id'),array_column($completed_tasks,'id'));
+    
+    //Get all info
+    $incomplete_tasks_array=array();
+    foreach($incomplete_tasks as $incomplete_task)
+{
+    $stmt = $conn->prepare('SELECT task.id, task.description
+                            FROM task
+                            WHERE task.id=?
+                          ');
+
+    $stmt->execute(array($incomplete_task));
+    array_push($incomplete_tasks_array,$stmt->fetch());
+  }
+  
+    return $incomplete_tasks_array;
   }
 
   
@@ -93,11 +122,25 @@ function getMissionByUser($name) {
                           WHERE
                            NOT EXISTS (
                             SELECT id_task FROM user_progress WHERE id_task = ?
+                            AND name_user= ?
                               );');
     
-     $stmt->execute(array($username,$task_id,$task_id));
+     $stmt->execute(array($username,$task_id,$task_id, $username));
 
     return $stmt->fetchAll();  
+  }
+
+  
+function deleteTask($task_id, $username) {
+    global $conn;
+
+      $stmt = $conn->prepare('DELETE FROM user_progress
+                          WHERE name_user=?
+                          AND id_task=?
+                          ;');
+    
+     $stmt->execute(array($username,$task_id));
+
   }
 
   function checkAllTasksCompleted($completed_tasks, $mission_tasks) {

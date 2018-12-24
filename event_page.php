@@ -18,6 +18,7 @@
   $nr_participants=getNrParticipantsInEvent($id);
   $participants=selectAllParticipants($id);
   $participant_in_event=checkIfParticipantInEvent($_SESSION['name'],$id);
+  $max_nr_pages=getMaxNrPages($id);
 
 }
 else{
@@ -99,7 +100,10 @@ include('templates/header.php');
             <a href='event_page.php?cmt_page=<?=($comment_page-1)."&id=".$event['id']?>'>&lt;</a>
        <?php } ?> 
              <?=$comment_page?> 
+
+             <?php if($comment_page!= $max_nr_pages) { ?> 
              <a href='event_page.php?cmt_page=<?=($comment_page+1)."&id=".$event['id']?>'>&gt;</a>
+             <?php } ?> 
     </div>
 
 

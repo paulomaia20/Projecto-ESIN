@@ -99,10 +99,6 @@ input{
 	width: 100%;
 }
 
-footer{
-}
-
-
 #section1{
 background:#7CD434;
 background-size: contain;
@@ -129,11 +125,6 @@ padding-bottom:3em;
 
 }
 
-
-#loginbox{
-
-}
-
 #treeline{
 	width:100%;
 }
@@ -145,4 +136,19 @@ padding-bottom:3em;
 #inscreve-te{
 	text-align: center;
 	color:white;
+}
+
+@media (max-width: 1200px)
+{
+
+	#introduction
+	{
+		display: block; 
+		padding-bottom: 2em; 
+	}
+
+	.col-6 {
+		width: 100%;
+
+	}
 }
