@@ -16,7 +16,11 @@
     die(header('Location: edit_event.php?id='.$id));
   }
 
-  //Verificar se a data é anterior à de hoje!!!
+  if($date < $now) {//Verificar se a data é anterior à de hoje!!!
+    $_SESSION['error_message'] = 'Date of the event is in the past';
+    die(header('Location: edit_event.php?id='.$id));
+
+  }
   
   try {
     editEvent($title, $date, $body, $place, $type, $name_creator, $user_name, $id);

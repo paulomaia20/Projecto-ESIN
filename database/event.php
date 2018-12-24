@@ -13,7 +13,7 @@
     if ($name_creator==$user_name )
          {
           $stmt = $conn->prepare('UPDATE event SET (title, date, description, place, id_type, name_creator) = (?, ?, ?, ?, ?, ?)  WHERE id=?');
-          $stmt->execute(array($title, $date, $body, $place, $type, $name_creator, $id));
+          $stmt->execute(array($title, $date, $body, $place, $type['id'], $name_creator, $id));
          }
   }
 
