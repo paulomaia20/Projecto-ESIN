@@ -23,7 +23,7 @@
 <html lang="en-US">
 
 <head>
-    <title>RecycleABit - Profile</title>
+    <title>RecycleABit - Edit event</title>
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/style_withoutgridlayout.css">
     <link href="css/navbar.css" rel="stylesheet" type="text/css">
