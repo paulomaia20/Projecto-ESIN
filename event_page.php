@@ -71,7 +71,7 @@ include('templates/header.php');
                 <div class="list-participants">
                     <?php foreach($participants as $participant) { ?>
                 <div class="participant">
-                    <img src="img/avatar_1.jpg" alt="avatar_1"> <h6> <a href='user_profile.php?name=<?=$participant['name']?>'> <?=$participant['name']?> </a> </h6>
+                    <img src="img/thumbs_small/<?=$participant['path_photo']?>" alt="avatar_1"> <h6> <a href='user_profile.php?name=<?=$participant['name']?>'> <?=$participant['name']?> </a> </h6>
                 </div>
           <?php } ?> 
                 </div>
