@@ -35,15 +35,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="tab blue">
-                        <input id="tab-six" type="radio" name="tabs2">
-                        <label for="tab-six">Q3</label>
-                        <div class="tab-content">
-                            <p>
-                                   Q3 Answer
-                            </p>
-                        </div>
-                    </div>
+                   
             </div>
             <div><img src="img/Question_Block_3D.png" alt="Question mark" class="question_mark"></div>
     </header>

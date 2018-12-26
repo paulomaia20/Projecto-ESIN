@@ -67,9 +67,11 @@
 	font-weight: bold;
 }
 
-.main-navbar .icon {
+.main-navbar .icon, .responsive_homepage_name {
 	display: none;
   } 
+
+  
 
 /* RESPONSIVE NAVBAR */ 
 
@@ -80,27 +82,56 @@
 		float: right;
 		display: block;
 	  }
+
+	  .responsive_homepage_name {
+		  display: block; 
+	  }
 	
 }
   
   /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
   @media (max-width: 1200px) {
 
+	.navbar-brand{
+		display: none;
+	}
+
 	.main-navbar.responsive .icon {
 	  position: absolute;
 	  right: 0;
 	  top: 0;
 	}
+
+	.main-navbar.responsive .responsive_homepage_name li {
+		color: red; 
+	}
+
 	.main-navbar.responsive ul {
-		display: flex;
-		float: left; 
+		/*display: flex;*/ 
 		justify-content: right;
 		flex-direction: column;
 		text-align: right;
+		font-size: 0.6em; 
+		display: inline-block;
+		width: 100%; 
 	}
-	.main-navbar.responsive ul li {
-		flex-direction: column; 
-		line-height: 0.1em; 
+	.main-navbar.responsive ul li a {
+		padding: 0.5em; 
+		margin: 0.5em; 
+
+	}
+
+	.main-navbar.responsive ul li  {
+		padding: 0; 
+		margin: 0; 
+		display: inline-block;
+
+	}
+
+	.main-navbar.responsive ul li  {
+		padding: 0; 
+		margin: 0; 
+		display: inline-block;
 
 	}
 

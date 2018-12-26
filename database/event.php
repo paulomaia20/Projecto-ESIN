@@ -18,6 +18,16 @@
          }
   }
 
+  function getEventTypeByID($event_id) {
+    global $conn;
+    $stmt = $conn->prepare('SELECT *
+                            FROM event_type
+                            JOIN event ON event.id_type=event_type.id
+                            WHERE event.id=?');
+    $stmt->execute(array($event_id));
+    return $stmt->fetch();
+  }
+
   function getAllEventTypes() {
     global $conn;
     $stmt = $conn->prepare('SELECT * FROM event_type');

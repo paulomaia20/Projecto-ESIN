@@ -1,0 +1,28 @@
+html{
+   background-color:#B2D9F4;
+   margin: 0px;
+}
+
+h1 {
+    margin-top:10%;
+     text-align:center; 
+     color:rgb(45, 64, 117);
+}
+
+h2 {
+    text-align:center;
+    color:rgb(255, 255, 255);
+}
+
+button {
+    margin: 0 auto; 
+    display: inline-block; 
+    color: black; 
+    background-color: transparent;
+    border: 1px solid black; 
+
+}
+
+form {
+    text-align: center;
+}

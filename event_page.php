@@ -19,7 +19,7 @@
   $participants=selectAllParticipants($id);
   $participant_in_event=checkIfParticipantInEvent($_SESSION['name'],$id);
   $max_nr_pages=getMaxNrPages($id);
-
+  $event_type=getEventTypeByID($id);
 }
 else{
     header('Location: homepage.php');
@@ -45,19 +45,22 @@ include('templates/header.php');
             <h3 class="event-info">Number of comments - </h3> <h5 class="event-info"> <?=$nr_comments['cmt_nr']?> </h5><img src="img/chat.png" alt="comment" class="icon-right">
             <br>
             <h3 class="event-info">Venue -  </h3><h5 class="event-info"> <?=  $event['place'] ?> </h5><img src="img/localization.png" alt="venue" class="icon-right">
+            <br>
+            <h3 class="event-info">Event Type -  </h3><h5 class="event-info"> <?=   $event_type['type'] ?> </h5><img src="img/localization.png" alt="venue" class="icon-right">
+
           
             <div class="wrapper-button">
             <form action = "action_participate_event.php" method = "POST">
                 <input type="hidden" name="eventID" value='<?=$event['id']?>'>
                <?php if($participant_in_event==false) { ?> 
-                <button type="submit" class="button"> Participate</button>
+                <button type="submit" class="button"> Participar</button>
                 <?php } ?> 
             </form>     
 
           <?php if($_SESSION['name']===$event['name_creator'] ) { ?>
-            <button class="button" type="button"><a href='edit_event.php?id=<?=$event['id']?>'>Editar evento</a></button><br>
+            <button class="button" type="submit"><a href='edit_event.php?id=<?=$event['id']?>'>Editar evento</a></button><br>
           <?php } ?> 
-          
+
             </div>
             </div>
             
