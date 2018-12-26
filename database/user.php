@@ -22,11 +22,11 @@
     return $user !== false;
   }
 
-
-
-  function createUser($username, $password, $email) {
-   
+  function createUser($username, $password, $email, $path_img) {
     global $conn;
+
+    if (!isset($path_img))
+        $path_img='avatar_1.jpg';
 
     $options = [
         'cost' => 12
@@ -34,8 +34,8 @@
 
     $hash = password_hash($password, PASSWORD_DEFAULT, $options);
 
-    $stmt = $conn->prepare('INSERT INTO users(name,email,password) VALUES (?, ?, ?)');
-    $stmt->execute(array($username, $email, $hash));
+    $stmt = $conn->prepare('INSERT INTO users(name,email,password, path_photo) VALUES (?, ?, ?,?)');
+    $stmt->execute(array($username, $email, $hash,$path_img));
 
     //Add first mission 
     $stmt = $conn->prepare('INSERT INTO user_mission(id_mission, name_user) VALUES (?, ?)');
