@@ -14,7 +14,7 @@
  #foreach ($event_types as $type)
     #var_dump($type['type']!=$event['type']);   
  
-
+var_dump($event);
 
 ?> 
 
@@ -76,7 +76,7 @@
                     <input type="date" value="<?=$event['date']?>" name="date" id="date"> <br>
 
                     <label for="body">Descrição do evento:</label>
-                    <textarea name="body" value="<?=$event['body']?>" rows="4" cols="50">  </textarea><br>
+                    <textarea name="body" rows="4" cols="50"> <?=$event['description']?>  </textarea><br>
 
                     <label for="place">Local do evento*:</label>
                     <input type="text" value="<?=$event['place']?>" name="place" id="place"> <br> 
@@ -86,10 +86,10 @@
                     
                     <?php foreach ($event_types as $type) {?> 
                                      
-                    <?php if($type['type']==$event['type']) { ?>
-                        <option selected value='<?= $type['type']; ?>'> <?= $type['type']."+".$type['score']."XP"; ?> </option> <?php } ?>
-                    <?php if($type['type']!=$event['type']) { ?>
-                        <option value='<?= $type['type']; ?>'> <?= $type['type']."+".$type['score']."XP"; ?> </option> <?php } ?>
+                    <?php if($type['id']==$event['id_type']) { ?>
+                        <option selected value='<?= $type['id']; ?>'> <?= $type['type']."+".$type['score']."XP"; ?> </option> <?php } ?>
+                    <?php if($type['id']!=$event['id_type']) { ?>
+                        <option value='<?= $type['id']; ?>'> <?= $type['type']."+".$type['score']."XP"; ?> </option> <?php } ?>
                     <?php } ?>  <br>
 
                 </div>

@@ -2,7 +2,7 @@
   include ('config/init.php');
   include ('database/event.php');
 
-  $title = $_POST['title']; //Removes HTML from a string
+  $title = $_POST['title'];
   $date = $_POST['date']; 
   $body = $_POST['body']; 
   $place = $_POST['place']; 
@@ -14,13 +14,13 @@
     die(header('Location: create_event.php'));
   }
 
-  $now = new DateTime();
+ /* $now = new DateTime();
 
   if($date < $now) { //Verificar se a data é anterior à de hoje!!!
     $_SESSION['error_message'] = 'Date of the event is in the past';
     die(header('Location: create_event.php'));
 
-  }
+  } */ 
   
   
   try {

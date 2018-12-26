@@ -10,10 +10,11 @@
 
   function editEvent($title, $date, $body, $place, $type, $name_creator, $user_name, $id ) {
     global $conn;
-    if ($name_creator==$user_name )
+     
+   if ($name_creator==$user_name )
          {
           $stmt = $conn->prepare('UPDATE event SET (title, date, description, place, id_type, name_creator) = (?, ?, ?, ?, ?, ?)  WHERE id=?');
-          $stmt->execute(array($title, $date, $body, $place, $type['id'], $name_creator, $id));
+          $stmt->execute(array($title, $date, $body, $place, $type, $name_creator, $id));
          }
   }
 
@@ -99,7 +100,7 @@
 
   function deleteComment($comment_id,$event_creator_name, $user_name, $logged_user_name) {
     global $conn;
-    if ($event_creator_name==$user_name || $logged_user_name==$user_name )
+    if ($event_creator_name==$logged_user_name || $logged_user_name==$user_name )
          {
         $stmt = $conn->prepare('DELETE FROM comment
                             WHERE comment.id=?');
