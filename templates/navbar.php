@@ -16,7 +16,7 @@
             <a class="navbar-brand" href="homepage.php"><b>Recycle</b>ABit</a>
             <ul>
                 <li class="responsive_homepage_name"><a href="homepage.php" title="Home">HOMEPAGE</a></li>
-                <li><a href="event_list.php" title="Search">Pesquisa</a></li>
+                <li><a href="event_list.php" title="Search">Eventos</a></li>
                 <li><a href="create_event.php" title="New event">Novo evento</a></li>
                 <li><a href='user_profile.php?name=<?=$_SESSION['name']?>' title="My profile">Meu perfil</a></li>
                 <li><a href="action_logout.php" title="Log out">Sair</a></li>
