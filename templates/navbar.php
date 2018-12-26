@@ -15,6 +15,7 @@
 	<div class="main-navbar" id="myMainNavbar">
             <a class="navbar-brand" href="homepage.php"><b>Recycle</b>ABit</a>
             <ul>
+                <li class="responsive_homepage_name"><a href="homepage.php" title="Home">HOMEPAGE</a></li>
                 <li><a href="#" title="Search">Pesquisa</a></li>
                 <li><a href="create_event.php" title="New event">Novo evento</a></li>
                 <li><a href='user_profile.php?name=<?=$_SESSION['name']?>' title="My profile">Meu perfil</a></li>
@@ -26,16 +27,16 @@
         </div>
         <?php } ?> 
         
-        <script> function myFunction() {
+        
+ <script> 
+
+ function myFunction() {
   var x = document.getElementById("myMainNavbar");
-  console.log('Clicked me');
   if (x.className === "main-navbar") {
     x.className += " responsive";
   } else {
     x.className = "main-navbar";
   }
-
-    console.log(x.className);
 
 }
 </script>

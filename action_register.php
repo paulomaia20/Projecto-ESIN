@@ -30,6 +30,7 @@
     else
       $_SESSION['error_message'] = 'Registration failed for unknown reason!';
 
+      die($e);
     //$_SESSION['form_values'] = $_POST;
     die(header('Location: register.php'));
   }

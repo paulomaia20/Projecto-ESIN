@@ -2,7 +2,7 @@
   include ('config/init.php');
   include ('database/event.php');
 
-  $title = $_POST['title']; //Removes HTML from a string
+  $title = $_POST['title'];
   $date = $_POST['date']; 
   $body = $_POST['body']; 
   $place = $_POST['place']; 
