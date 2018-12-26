@@ -34,7 +34,7 @@
 
     $hash = password_hash($password, PASSWORD_DEFAULT, $options);
 
-    $stmt = $conn->prepare('INSERT INTO users VALUES (?, ?, ?)');
+    $stmt = $conn->prepare('INSERT INTO users(name,email,password) VALUES (?, ?, ?)');
     $stmt->execute(array($username, $email, $hash));
 
     //Add first mission 

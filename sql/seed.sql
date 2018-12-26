@@ -1,7 +1,9 @@
 -- Tables
+
+-- User(id, username, email, password, caminho_foto, pontuação)
  CREATE TABLE users(
  name VARCHAR PRIMARY KEY,
- email VARCHAR NOT NULL,
+ email VARCHAR UNIQUE NOT NULL,
  path_photo VARCHAR,
  regist_date DATE default CURRENT_DATE,
  password VARCHAR NOT NULL
@@ -13,7 +15,7 @@
  id SERIAL PRIMARY KEY,
  type VARCHAR NOT NULL,
  path_img VARCHAR NOT NULL,
- score INT
+ score INT NOT NULL
  );
 
 -- Evento(id, nome, data, descricao, local, pontuacao, #id_criador->user)
@@ -23,61 +25,51 @@
  title VARCHAR NOT NULL,
  date DATE default CURRENT_DATE, 
  description VARCHAR,
- place VARCHAR,
- id_type INTEGER REFERENCES event_type(id),
+ place VARCHAR NOT NULL,
+ id_type INTEGER NOT NULL REFERENCES event_type(id),
  score INT,
- name_creator VARCHAR
+ name_creator VARCHAR NOT NULL REFERENCES users(name)
  );
-
-
 
 -- Missao(id, pontuação, descrição)
   CREATE TABLE mission(
  id SERIAL PRIMARY KEY,
- score int,
+ score INTEGER NOT NULL,
  description VARCHAR
  );
 
  --Tarefas(id, descrição, completada)
   CREATE TABLE task(
  id SERIAL PRIMARY KEY,
- description VARCHAR,
- completed boolean,
- id_mission INTEGER
+ description VARCHAR NOT NULL,
+ id_mission INTEGER REFERENCES mission(id)
  );
-
 
  -- Missoes_user(#id_user->user, #id_missao->missao)
  CREATE TABLE user_mission(
- id_mission INTEGER,
- name_user VARCHAR
+ id_mission INTEGER REFERENCES mission(id),
+ name_user VARCHAR REFERENCES users(name)
  );
+
+ALTER TABLE ONLY user_mission
+ADD CONSTRAINT user_missions_pkey PRIMARY KEY
+(id_mission, name_user);
 
    -- Tarefas_user(#id_user->user, #id_task->task)
  CREATE TABLE user_progress(
  id SERIAL PRIMARY KEY,
  id_task INTEGER REFERENCES task(id),
- name_user VARCHAR REFERENCES users(name),
+ name_user VARCHAR NOT NULL REFERENCES users(name),
  id_event INTEGER REFERENCES event(id)
  );
-
- -- UserPoints(id, id_user->user, id_missao->missao, id_tipo_evento->tipo_evento, points) 
-CREATE TABLE userpoints(
-  id SERIAL PRIMARY KEY,
-  name_user VARCHAR,
-  id_mission INTEGER,
-  id_event INTEGER,
-  score INTEGER,
-  completion_date DATE default CURRENT_DATE 
-);
 
  -- Comment(id, description, #id_event->event, #name_user->user) 
 CREATE TABLE comment(
   id SERIAL PRIMARY KEY,
-  description VARCHAR,
-  id_event INTEGER REFERENCES event(id),
+  description VARCHAR NOT NULL,
+  id_event INTEGER NOT NULL REFERENCES event(id),
   date DATE default CURRENT_DATE, 
-  name_user VARCHAR REFERENCES users(name)
+  name_user VARCHAR NOT NULL REFERENCES users(name)
 );
 
 -- Participantes_Evento(#id_evento->evento, #name_user->User)
@@ -86,13 +78,9 @@ CREATE TABLE comment(
  name_user VARCHAR REFERENCES users(name)
  );
 
- -- UserPoints(id, id_user->user, id_missao->missao, id_tipo_evento->tipo_evento, points) 
- CREATE TABLE userpoints(
- id SERIAL PRIMARY KEY,
- name_user VARCHAR REFERENCES users(name),
- id_mission INTEGER REFERENCES mission(id),
- id_event INTEGER REFERENCES event(id)
- );
+ALTER TABLE ONLY event_participants
+ADD CONSTRAINT event_user_pkey PRIMARY KEY
+(id_event, name_user);
 
   -- Badge
  CREATE TABLE badge(
@@ -107,79 +95,25 @@ CREATE TABLE comment(
  min_score INTEGER
  );
 
-
-ALTER TABLE ONLY event_participants
-ADD CONSTRAINT event_user_pkey PRIMARY KEY
-(id_event, name_user);
-
-ALTER TABLE ONLY userpoints
- ADD CONSTRAINT userpoints_name_user FOREIGN KEY (name_user)
-REFERENCES users(name) ON UPDATE CASCADE ON DELETE CASCADE;
-
-ALTER TABLE ONLY userpoints
- ADD CONSTRAINT userpoints_id_mission FOREIGN KEY (id_mission)
-REFERENCES mission(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
-/*ALTER TABLE ONLY user_tasks 
-ADD CONSTRAINT user_tasks_mission_pkey PRIMARY KEY
-(id_task, name_user);
-
-ALTER TABLE ONLY user_tasks
- ADD CONSTRAINT user_tasks_id_task_fkey FOREIGN KEY (id_task)
-REFERENCES task(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-ALTER TABLE ONLY user_tasks 
- ADD CONSTRAINT user_tasks_user_name_fkey FOREIGN KEY (name_user)
-REFERENCES users(name) ON UPDATE CASCADE ON DELETE CASCADE; */ 
-
-ALTER TABLE ONLY task
- ADD CONSTRAINT id_mission_fkey FOREIGN KEY (id_mission)
-REFERENCES mission(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-ALTER TABLE ONLY user_mission
-ADD CONSTRAINT user_missions_pkey PRIMARY KEY
-(id_mission, name_user);
-
-ALTER TABLE ONLY user_mission
- ADD CONSTRAINT user_mission_id_mission_fkey FOREIGN KEY (id_mission)
-REFERENCES mission(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-ALTER TABLE ONLY user_mission
- ADD CONSTRAINT user_mission_id_user_fkey FOREIGN KEY (name_user)
-REFERENCES users(name) ON UPDATE CASCADE ON DELETE CASCADE;
-
 INSERT INTO level(id_level, min_score) VALUES(1,10);
 INSERT INTO level(id_level, min_score) VALUES(2,70);
 INSERT INTO level(id_level, min_score) VALUES(3,110);
 INSERT INTO level(id_level, min_score) VALUES(4,170);
 
-INSERT INTO mission(score, description) VALUES(30,'descricao missao 1');
-INSERT INTO mission(score, description) VALUES(40,'descricao missao 2');
-INSERT INTO mission(score, description) VALUES(50,'descricao missao 3');
+INSERT INTO mission(score, description) VALUES(30,'Descricao missao 1');
+INSERT INTO mission(score, description) VALUES(40,'Descricao missao 2');
+INSERT INTO mission(score, description) VALUES(50,'Descricao missao 3');
 
-INSERT INTO task(description,completed, id_mission) VALUES('task1_m1',false,1);
-INSERT INTO task(description,completed, id_mission) VALUES('task2_m1',false,1);
-INSERT INTO task(description,completed, id_mission) VALUES('task3_m1',false,1);
-INSERT INTO task(description,completed, id_mission) VALUES('task1_m2',false,2);
-INSERT INTO task(description,completed, id_mission) VALUES('task2_m2',false,2);
-INSERT INTO task(description,completed, id_mission) VALUES('task3_m2',false,2);
+INSERT INTO task(description,id_mission) VALUES('Task1_m1',1);
+INSERT INTO task(description, id_mission) VALUES('Task2_m1',1);
+INSERT INTO task(description,id_mission) VALUES('Task3_m1',1);
+INSERT INTO task(description, id_mission) VALUES('Task1_m2',2);
+INSERT INTO task(description, id_mission) VALUES('Task2_m2',2);
+INSERT INTO task(description, id_mission) VALUES('Task3_m2',2);
 
 INSERT INTO event_type(id,type,path_img,score)  VALUES(1,'Apanhar jornais','newspaper.png', 3);
 INSERT INTO event_type(id,type,path_img,score)  VALUES(2,'Apanhar plástico', 'plastic_container.png', 5);
 INSERT INTO event_type(id,type,path_img,score)  VALUES(3,'Apanhar vidro', 'glass_jar.png', 6);
-
-INSERT INTO user_mission (id_mission, name_user) VALUES (1, 'paulo');
-
-/* ISTO AINDA É MANUAL... METER NO CÓDIGO */ 
-
-INSERT INTO event(title, description, place, id_type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup',1,'Joao');
-INSERT INTO event(title, description, place, id_type, name_creator) VALUES ('Title1', 'ola isto e um evento', 'feup',2,'Joao');
-
-INSERT INTO comment(description,id_event,name_user) VALUES('lorem ipsumlorem ipsum lorem ipsumlorem ipsumlorem ipsum ', 1, 'paulo');
-
-INSERT INTO event_participants(id_event,name_user) VALUES (1,'paulo');
-INSERT INTO event_participants(id_event,name_user) VALUES (1,'joao');
 
 INSERT INTO badge(name, path_img, id_mission) VALUES('Plastic Bag','plastic_bag.png',1);
 INSERT INTO badge(name, path_img, id_mission) VALUES('Newspaper','newspaper.png',2);
