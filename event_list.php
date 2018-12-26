@@ -12,7 +12,6 @@ else
 
     $events = getAllEvents($page);
 
-    //print_r($events);
 
 if (isset($_GET['title']) && isset($_GET['name_creator']) && isset($_GET['place'])) {
     $title = $_GET['title'];
@@ -46,9 +45,9 @@ if (isset($title) && isset($name_creator) && isset($place))
 
 <ul class="grid">
 <?php foreach ($events as $event) {
-    $src=getEventTypeById( $event['id']);
+    $src=getEventTypeByID($event['id']);
     ?>
-    <li><img src="img/<?=$src['path_img'] ?>" alt="image" class="board"><a href="<?=$event['id'] ?>"><h3><?= $event['title'] ?> </h3></a><h4>@ <?= $event['place'] ?></h4><h5><?= $event['date'] ?></h5></li>
+    <li><img src="img/<?=$src['path_img'] ?>" alt="image" class="board"><a href="event_page.php?id=<?=$event['id'] ?>"><h3><?= $event['title'] ?> </h3></a><h4>@ <?= $event['place'] ?></h4><h5><?= $event['date'] ?></h5></li>
 <?php } ?> 
     
 </ul>
