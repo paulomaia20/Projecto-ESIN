@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/style_withoutgridlayout.css">
     <link href="css/navbar.css" rel="stylesheet" type="text/css">
+    <link href="css/error_message.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">

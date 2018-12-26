@@ -5,6 +5,7 @@
 
 	<link href="css/mainstyle.css" rel="stylesheet" type="text/css">
 	<link href="css/form.css" rel="stylesheet" type="text/css">
+	<link href="css/error_message.css" rel="stylesheet" type="text/css">
 	<title>RecycleABit</title>
 </head>
 
@@ -23,7 +24,7 @@
         </form> 
 	</div>
 
-	<div class="error_message">
+<div class="error_message">
 <?php  	
  if(isset($_ERROR_MESSAGE))
     {

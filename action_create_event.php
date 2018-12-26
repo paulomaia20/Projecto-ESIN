@@ -15,13 +15,17 @@
   }
 
   $now = new DateTime();
-
-  if($date < $now) { //Verificar se a data é anterior à de hoje!!!
+  $present_date = $now->format('Y-m-d');
+  $event_date = strtodate($date)
+  if($event_date < $now) { //Verificar se a data é anterior à de hoje!!!
     $_SESSION['error_message'] = 'Date of the event is in the past';
     die(header('Location: create_event.php'));
 
   }
-  
+  var_dump($now);
+  var_dump($present_date);
+  var_dump($event_date);
+
   
   try {
     $id=createEvent($title, $date, $body, $place, $type, $name_creator);

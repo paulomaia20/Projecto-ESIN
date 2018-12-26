@@ -10,6 +10,8 @@ $event_types=getAllEventTypes();
     <title>RecycleABit - Criar Evento</title>
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/style_withoutgridlayout.css">
+    <link href="css/error_message.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
