@@ -12,13 +12,21 @@ else
     $events = getAllEvents($page);
 
     //print_r($events);
+
+if (isset($_GET['title']) && isset($_GET['date']) && isset($_GET['place'])) {
+    $title = $_GET['title'];
+    $date = $_GET['date'];
+    $place = $_GET['place'];  
+}
+
+if (isset($title) && isset($date) && isset($place))
+    $events = getEventsBySearch($title, $date, $place);
 ?>
 
 <html lang="en-US">
     
 <head>
 <title>RecycleABit - Next events</title>
-    <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/style_withoutgridlayout.css">
     <link rel="stylesheet" href="css/event_list.css" type="text/css">
     <link href="css/navbar.css" rel="stylesheet" type="text/css">
@@ -29,22 +37,20 @@ else
 <body>
 <header class="header-container">
             <!-- Header content -->
-            <div class="main-navbar">
-                <a class="navbar-brand" href="#"><b>Recycle</b>ABit</a>
-                <ul>
-                    <li><a href="#" title="My profile">Meu perfil</a></li>
-                    <li><a href="#" title="New event">Novo evento</a></li>
-                    <li><a href="#" class="active" title="Next events">Eventos</a></li>
-                    <li><a href="#" title="Log out">Sair</a></li> 
-                </ul>
-            </div>
-   
+            <?php include('templates/navbar.php'); ?> 
         <div>
             <h1 id="faq-heading">Next events</h1> 
         </div>
+        <form id="searchbar" action="event_list.php" method="get">
+            <input type="text" name="title" placeholder="Event Name">
+            <input type="text" name="date" placeholder="Date">
+            <input type="text" name="place" placeholder="Venue">
+            <input type="submit" value="Search">
+        </form>
 
 <ul class="grid">
 <?php foreach ($events as $event) {?>
+    select * from event_type where id=?
     <li><img src="img/newspaper.png" alt="image" class="board"><a href="#"><h3><?= $event['title'] ?> </h3></a><h4>@ <?= $event['place'] ?></h4><h5><?= $event['date'] ?></h5></li>
 <?php } ?> 
     

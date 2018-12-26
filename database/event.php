@@ -8,26 +8,6 @@
     return $conn->lastInsertID(); 
   }
 
-  function editEvent($title, $date, $body, $place, $type, $name_creator, $user_name, $id ) {
-    global $conn;
-     
-   if ($name_creator==$user_name )
-         {
-          $stmt = $conn->prepare('UPDATE event SET (title, date, description, place, id_type, name_creator) = (?, ?, ?, ?, ?, ?)  WHERE id=?');
-          $stmt->execute(array($title, $date, $body, $place, $type, $name_creator, $id));
-         }
-  }
-
-  function getEventTypeByID($event_id) {
-    global $conn;
-    $stmt = $conn->prepare('SELECT *
-                            FROM event_type
-                            JOIN event ON event.id_type=event_type.id
-                            WHERE event.id=?');
-    $stmt->execute(array($event_id));
-    return $stmt->fetch();
-  }
-
   function getAllEventTypes() {
     global $conn;
     $stmt = $conn->prepare('SELECT * FROM event_type');
@@ -40,22 +20,6 @@
     $stmt = $conn->prepare('SELECT * FROM event WHERE id=?');
     $stmt->execute(array($id));
     return $stmt->fetch();
-  }
-
-  function getMaxNrPages($event_id) {
-    global $conn;
-    $limit_per_page=3;
-
-    $stmt = $conn->prepare('SELECT COUNT(comment.id) AS cnt
-    FROM comment
-    JOIN event ON comment.id_event=event.id
-    WHERE event.id=?
- ');
-
-    $stmt->execute(array($event_id));
-    $nr_comments=$stmt->fetch();
-    $max=round($nr_comments['cnt']/$limit_per_page);
-    return $max+1;
   }
 
   function getCommentsByEventId($id, $page) {
@@ -110,7 +74,7 @@
 
   function deleteComment($comment_id,$event_creator_name, $user_name, $logged_user_name) {
     global $conn;
-    if ($event_creator_name==$logged_user_name || $logged_user_name==$user_name )
+    if ($event_creator_name==$user_name || $logged_user_name==$user_name )
          {
         $stmt = $conn->prepare('DELETE FROM comment
                             WHERE comment.id=?');
@@ -152,12 +116,38 @@
 
       function checkIfParticipantInEvent($name, $event_id) {
         global $conn;
-        
+        //acabar query 
         $stmt = $conn->prepare('SELECT * FROM event_participants WHERE name_user = ?
         AND id_event=?');
                                 
         $stmt->execute(array($name,$event_id));
         return $stmt->fetch();
+      }
+
+      function getEventsBySearch($title, $date, $place) {
+        global $conn;
+
+        $query = 'SELECT * FROM event WHERE 1=1';
+        $params = array();
+
+        if ($title !== '') {
+          $query .= ' AND title ILIKE ?';
+          $params[] = '%' . $title . '%';
+        }
+
+        if ($date !== '') {
+          $query .= ' AND date ILIKE ?';
+          $params[] = $date;
+        }
+
+        if ($place !== '') {
+          $query .= ' AND place ILIKE ?';
+          $params[] = $place;
+        }
+
+        $stmt = $conn->prepare($query);
+        $stmt->execute($params);
+        return $stmt->fetchAll();
       }
 
 ?>
