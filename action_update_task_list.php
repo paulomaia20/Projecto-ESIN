@@ -6,21 +6,15 @@ if(isset($_POST['tasks'])) //Did he submit any task?
 {   
     $tasks_selected = $_POST['tasks'];
     
-    print_r($tasks_selected);
-
     $mission=getMissionByUser($_SESSION['name']);
     $all_tasks=getTasksByMission($mission['id']);
-    print_r($all_tasks);
 
     //Convert into same format
     $all_tasks_id=array();
     foreach($all_tasks as $task)
       array_push($all_tasks_id,$task['id']);
      
-    print_r($all_tasks_id);
-
     $not_selected_tasks=array_diff($all_tasks_id,$tasks_selected);
-    print_r($not_selected_tasks);
 
 
     foreach($not_selected_tasks as $not_selected_task)
@@ -45,8 +39,8 @@ if(isset($_POST['tasks'])) //Did he submit any task?
           die(header('Location: homepage.php'));
          }
         }
-header('Location: homepage.php');
 
 }
+header('Location: homepage.php');
 
   ?>

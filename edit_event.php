@@ -71,8 +71,7 @@ include('templates/header.php');
 
                 </div>
 
-                  
-
+                
                 <div class="form-end">
                     <input type="submit" value="Send">
                 </div>

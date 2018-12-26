@@ -6,6 +6,12 @@
   $password = $_POST['password'];
   $email = strip_tags($_POST['email']); //Tentar com o strip_tags
   $confirm_pw=$_POST['confirm_password'];
+  $path_img=$_POST['dummy_variable']; 
+  
+  if(!empty($_FILES['image']['name']))
+  {
+  include('templates/change_avatar.php');
+  }
 
   if (!$username || !$password || !$email) {
     $_SESSION['error_message'] = 'All fields are mandatory!';
@@ -18,7 +24,7 @@
   }
 
   try {
-    createUser($username, $password, $email);
+    createUser($username, $password, $email, $path_img);
     $_SESSION['success_message'] = 'User registered with success!';
     
   } catch (PDOException $e ) {
@@ -30,8 +36,6 @@
     else
       $_SESSION['error_message'] = 'Registration failed for unknown reason!';
 
-      die($e);
-    //$_SESSION['form_values'] = $_POST;
     die(header('Location: register.php'));
   }
 

@@ -7,6 +7,7 @@
    {    
     $username=$_GET['name'];
      $user_info = getUserInfo($username);
+     
      $latest_missions=getLatestMissions($username);
      $latest_events=getLatestEvents($username);
      $badges=getLatestBadges($username);
@@ -35,7 +36,7 @@ include('templates/header.php');
 
         <nav id="user_info">
 
-            <img alt="avatar" src="img/avatar_1.jpg">
+            <img alt="avatar" src="img/thumbs_small/<?=$user_info['path_photo']?>">
 
             <div class="first_row_profile">
                 <h1> <?=$username?> </h1>
@@ -47,7 +48,7 @@ include('templates/header.php');
             <article id="about_me">Sobre mim</article>
 
             <article id="level">Nível <?=$level[0]?></article>
-            <article id="date">Utilizador desde 23/11/2018</article>
+            <article id="date">Utilizador desde <?=$user_info['regist_date']?> </article>
             <article id="email"><?=$user_info['email']?></article>
             <?php if($username==$_SESSION['name']) { ?> 
         <button class="button" type="button"><a href='edit_profile.php?name=<?=$username?>'><i class="fa fa-edit"></i>Editar perfil</a></button><br>

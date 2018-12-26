@@ -5,6 +5,7 @@ include('database/missions.php');
 include('database/user.php');
 
 // Get current mission for the logged user
+$user = getUserInfo($_SESSION['name']);
 $curr_mission=getMissionByUser($_SESSION['name']);
 $mission_tasks=getTasksByMission($curr_mission['id']);
 $completed_tasks=getCompletedTasks($_SESSION['name'],$curr_mission['id']);
@@ -23,8 +24,9 @@ if($iscompleted==true)
 
 $badges=getBadgesInMission($curr_mission['id']);
 
-if(!isset($latest_badge))
+if(isset(getLatestBadges($_SESSION['name'])[0]))
     $latest_badge=getLatestBadges($_SESSION['name'])[0];
+
 $score=getTotalScore($_SESSION['name']);
 $level=getLevelFromTotalScore($score);
 
@@ -50,7 +52,7 @@ include('templates/header.php');
 <div class="wrapper"> 
     <section id="user-info">
 
-        <img alt="avatar" src="img/avatar_1.jpg">
+        <img alt="avatar" src="img/thumbs_small/<?=$user['path_photo']?>">
         <div id="first_row">
             <h1> <?php echo $_SESSION['name'] ?>  <p id="level">Nível <?=$level[0]?> </p></h1> 
 
@@ -64,7 +66,9 @@ include('templates/header.php');
         <div class="past-rewards">
             <h1>Última recompensa</h2>
                 <ul>
+                <?php if(isset($latest_badge)) {?>
                     <li><i class="fa fa-arrow-right"></i><?=$latest_badge['name']?></li>
+                    <?php } ?> 
                 </ul>
             </div>
 

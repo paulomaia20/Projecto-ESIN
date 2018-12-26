@@ -95,6 +95,9 @@ ADD CONSTRAINT event_user_pkey PRIMARY KEY
  min_score INTEGER
  );
 
+
+-- Backend variables 
+
 INSERT INTO level(id_level, min_score) VALUES(1,10);
 INSERT INTO level(id_level, min_score) VALUES(2,70);
 INSERT INTO level(id_level, min_score) VALUES(3,110);
@@ -103,6 +106,7 @@ INSERT INTO level(id_level, min_score) VALUES(4,170);
 INSERT INTO mission(score, description) VALUES(30,'Descricao missao 1');
 INSERT INTO mission(score, description) VALUES(40,'Descricao missao 2');
 INSERT INTO mission(score, description) VALUES(50,'Descricao missao 3');
+INSERT INTO mission(score, description) VALUES(30,'Descricao missao 4');
 
 INSERT INTO task(description,id_mission) VALUES('Task1_m1',1);
 INSERT INTO task(description, id_mission) VALUES('Task2_m1',1);
@@ -110,6 +114,8 @@ INSERT INTO task(description,id_mission) VALUES('Task3_m1',1);
 INSERT INTO task(description, id_mission) VALUES('Task1_m2',2);
 INSERT INTO task(description, id_mission) VALUES('Task2_m2',2);
 INSERT INTO task(description, id_mission) VALUES('Task3_m2',2);
+INSERT INTO task(description, id_mission) VALUES('Task1_m3',3);
+INSERT INTO task(description, id_mission) VALUES('Task2_m3',3);
 
 INSERT INTO event_type(id,type,path_img,score)  VALUES(1,'Apanhar jornais','newspaper.png', 3);
 INSERT INTO event_type(id,type,path_img,score)  VALUES(2,'Apanhar plástico', 'plastic_container.png', 5);

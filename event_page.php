@@ -47,6 +47,8 @@ include('templates/header.php');
             <h3 class="event-info">Venue -  </h3><h5 class="event-info"> <?=  $event['place'] ?> </h5><img src="img/localization.png" alt="venue" class="icon-right">
             <br>
             <h3 class="event-info">Event Type -  </h3><h5 class="event-info"> <?=   $event_type['type'] ?> </h5><img src="img/localization.png" alt="venue" class="icon-right">
+            <br>
+            <h3 class="event-info">Event Date -  </h3><h5 class="event-info"> <?=   $event_type['date'] ?> </h5><img src="img/localization.png" alt="venue" class="icon-right">
 
           
             <div class="wrapper-button">
@@ -69,7 +71,7 @@ include('templates/header.php');
                 <div class="list-participants">
                     <?php foreach($participants as $participant) { ?>
                 <div class="participant">
-                    <img src="img/avatar_1.jpg" alt="avatar_1"> <h6> <a href='user_profile.php?name=<?=$participant['name']?>'> <?=$participant['name']?> </a> </h6>
+                    <img src="img/thumbs_small/<?=$participant['path_photo']?>" alt="avatar_1"> <h6> <a href='user_profile.php?name=<?=$participant['name']?>'> <?=$participant['name']?> </a> </h6>
                 </div>
           <?php } ?> 
                 </div>
