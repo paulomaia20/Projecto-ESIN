@@ -11,9 +11,9 @@
   $name_creator= $_GET['name_creator'];
   $user_name= $_SESSION['name']; 
   print_r($_POST);
-  //$now = new DateTime();
-  //$now->format('Y-m-d');
-  //print_r(  $now);
+  $now = new DateTime();
+  $format_date = $now->format('Y-m-d');
+  $event_date = strtotime($date);
 
 
   if (!$title || !$place || !$type) {
@@ -21,11 +21,11 @@
     die(header('Location: edit_event.php?id='.$id));
   }
 
-  /*if($date < $now['date']) {//Verificar se a data é anterior à de hoje!!!
+  if($event_date < $now) { 
     $_SESSION['error_message'] = 'Date of the event is in the past';
-  //  die(header('Location: edit_event.php?id='.$id));
+    die(header('Location: create_event.php'));
 
-  } */ 
+  }
   
   try {
     editEvent($title, $date, $body, $place, $type, $name_creator, $user_name, $id);
