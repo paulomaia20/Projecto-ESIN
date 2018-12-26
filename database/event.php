@@ -150,4 +150,12 @@
         return $stmt->fetchAll();
       }
 
+    function getEventTypeById( $id) {
+      global $conn;
+      $stmt = $conn->prepare('SELECT * FROM event_type JOIN event ON event_type.id=event.id_type WHERE event.id=?');
+      $stmt->execute(array($id));
+      return $stmt->fetch();
+    }
+
+
 ?>

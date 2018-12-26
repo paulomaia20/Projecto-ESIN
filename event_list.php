@@ -1,8 +1,9 @@
 <?php
 include('config/init.php');
 include('config/checkLogin.php');
-
 include('database/event.php');
+include('config/checkLogin.php');
+include('templates/header.php');
 
 if (isset($_GET['page']))
     $page = $_GET['page'];
@@ -28,12 +29,7 @@ if (isset($title) && isset($date) && isset($place))
 <head>
 <title>RecycleABit - Next events</title>
     <link rel="stylesheet" href="css/style_withoutgridlayout.css">
-    <link rel="stylesheet" href="css/event_list.css" type="text/css">
-    <link href="css/navbar.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,800" rel="stylesheet"></head>
+    <link rel="stylesheet" href="css/event_list.css" type="text/css"></head>
 <body>
 <header class="header-container">
             <!-- Header content -->
@@ -49,9 +45,10 @@ if (isset($title) && isset($date) && isset($place))
         </form>
 
 <ul class="grid">
-<?php foreach ($events as $event) {?>
-    select * from event_type where id=?
-    <li><img src="img/newspaper.png" alt="image" class="board"><a href="#"><h3><?= $event['title'] ?> </h3></a><h4>@ <?= $event['place'] ?></h4><h5><?= $event['date'] ?></h5></li>
+<?php foreach ($events as $event) {
+    $src=getEventTypeById( $event['id']);
+    ?>
+    <li><img src="img/<?=$src['path_img'] ?>" alt="image" class="board"><a href="<?=$event['id'] ?>"><h3><?= $event['title'] ?> </h3></a><h4>@ <?= $event['place'] ?></h4><h5><?= $event['date'] ?></h5></li>
 <?php } ?> 
     
 </ul>
@@ -65,9 +62,6 @@ if (isset($title) && isset($date) && isset($place))
     <a href="event_list.php?page=<?=$page+1?>">&gt;</a>
 </div>
 </body>
-<footer>
-    <img id="sky" src="img/sky1.png" alt="sky">
-</footer>
 </html>
     
 
