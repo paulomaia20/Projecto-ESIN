@@ -36,7 +36,7 @@ include('templates/header.php');
 
         <nav id="user_info">
 
-            <img alt="avatar" src="img/avatar_1.jpg">
+            <img alt="avatar" src="img/thumbs_small/<?=$user_info['path_photo']?>">
 
             <div class="first_row_profile">
                 <h1> <?=$username?> </h1>
