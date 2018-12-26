@@ -14,14 +14,14 @@ else
 
     //print_r($events);
 
-if (isset($_GET['title']) && isset($_GET['date']) && isset($_GET['place'])) {
+if (isset($_GET['title']) && isset($_GET['name_creator']) && isset($_GET['place'])) {
     $title = $_GET['title'];
-    $date = $_GET['date'];
+    $name_creator = $_GET['name_creator'];
     $place = $_GET['place'];  
 }
 
-if (isset($title) && isset($date) && isset($place))
-    $events = getEventsBySearch($title, $date, $place);
+if (isset($title) && isset($name_creator) && isset($place))
+    $events = getEventsBySearch($title, $name_creator, $place);
 ?>
 
 <html lang="en-US">
@@ -39,7 +39,7 @@ if (isset($title) && isset($date) && isset($place))
         </div>
         <form id="searchbar" action="event_list.php" method="get">
             <input type="text" name="title" placeholder="Event Name">
-            <input type="text" name="date" placeholder="Date">
+            <input type="text" name="name_creator" placeholder="Name of Creator">
             <input type="text" name="place" placeholder="Venue">
             <input type="submit" value="Search">
         </form>

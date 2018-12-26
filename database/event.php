@@ -124,7 +124,7 @@
         return $stmt->fetch();
       }
 
-      function getEventsBySearch($title, $date, $place) {
+      function getEventsBySearch($title, $name_creator, $place) {
         global $conn;
 
         $query = 'SELECT * FROM event WHERE 1=1';
@@ -135,9 +135,9 @@
           $params[] = '%' . $title . '%';
         }
 
-        if ($date !== '') {
-          $query .= ' AND date ILIKE ?';
-          $params[] = $date;
+        if ($name_creator !== '') {
+          $query .= ' AND name_creator ILIKE ?';
+          $params[] = $name_creator;
         }
 
         if ($place !== '') {
