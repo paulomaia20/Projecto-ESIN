@@ -46,9 +46,9 @@
   function getUserInfo($name) {
     //Function for getting info for the user profile
     global $conn;
-
     $stmt = $conn->prepare('SELECT * FROM users WHERE name=?');
     $stmt->execute(array($name));
+    return $stmt->fetch();
   }
 
   function getLatestBadges($name) {
@@ -98,17 +98,15 @@
   }
 
   function getTotalScore($name) {
-    //acabar
     global $conn;
 
-    //Score from missions - Não está a fazer bem o offset 
+    //Score from missions
     $stmt = $conn->prepare('SELECT SUM(score) AS score
                             FROM (
                             SELECT * FROM user_mission
                             JOIN mission ON user_mission.id_mission=mission.id
                             WHERE name_user = ?
                             ORDER BY id_mission DESC
-                 
                             OFFSET 1
                             ) AS sbqry                           
                             GROUP BY sbqry.name_user
@@ -134,7 +132,7 @@
   }
 
   function getLevelFromTotalScore($score) {
-    //acabar
+   
     global $conn;
 
     $stmt = $conn->prepare('SELECT * FROM level'); 
@@ -144,9 +142,9 @@
     foreach($levels as $level)
     {
       if($level['min_score'] > $score) 
-      { //O score mínimo está acima do score atual, logo ele está no nível anterior
+      { 
+        //O score mínimo está acima do score atual, logo ele está no nível anterior
         return (array($level['id_level']-1,$level['min_score']));
-
       }
     }
   }

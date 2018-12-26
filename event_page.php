@@ -47,6 +47,8 @@ include('templates/header.php');
             <h3 class="event-info">Venue -  </h3><h5 class="event-info"> <?=  $event['place'] ?> </h5><img src="img/localization.png" alt="venue" class="icon-right">
             <br>
             <h3 class="event-info">Event Type -  </h3><h5 class="event-info"> <?=   $event_type['type'] ?> </h5><img src="img/localization.png" alt="venue" class="icon-right">
+            <br>
+            <h3 class="event-info">Event Date -  </h3><h5 class="event-info"> <?=   $event_type['date'] ?> </h5><img src="img/localization.png" alt="venue" class="icon-right">
 
           
             <div class="wrapper-button">
