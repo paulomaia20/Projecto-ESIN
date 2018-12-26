@@ -1,18 +1,18 @@
 
 <?php
   include ('config/init.php');
-  include ('database/event.php');
+  include ('database/user.php');
   
-  $event_types=getAllEventTypes();
-
-  if(isset($_GET['id']))
+  if(isset($_GET['name']))
   {
-  $id = $_GET['id'];
-  $event = getEventById($id);
-}
-else{
+  $name = $_GET['name'];
+  $user=getUserInfo($name);
+
+  }
+ 
+  else{
     header('Location: homepage.php');
-}
+    }
 include('templates/header.php');
 
 ?> 
@@ -32,7 +32,7 @@ include('templates/header.php');
 
         <div class="form-box form-login">
 
-            <form action='action_edit_profile.php?id=<?=($event['id'])."&name_creator=".$event['name_creator']?>' method="POST"> 
+            <form action='action_edit_profile.php?name=<?=($user['name'])?>' method="POST" enctype="multipart/form-data"> 
                 <div class="form-top">
                     <div class="form-top-left">
                         <h1> Editar perfil </h1>
@@ -46,28 +46,15 @@ include('templates/header.php');
                 </div>
 
                 <div class="form-bottom">
-                    <label for="title">Nome*:</label>
-                    <input type="text" value="<?=$event['title']?>" name="title" id="title"> <br>
-
-                    <label for="date">Data do evento*:</label>
-                    <input type="date" value="<?=$event['date']?>" name="date" id="date"> <br>
-
-                    <label for="body">Descrição do evento:</label>
-                    <textarea name="body" rows="4" cols="50"> <?=$event['description']?>  </textarea><br>
-
-                    <label for="place">Local do evento*:</label>
-                    <input type="text" value="<?=$event['place']?>" name="place" id="place"> <br> 
-                    <label for="type">Tipo de evento*:</label>
-
-                 <select name="type">
-                    
-                    <?php foreach ($event_types as $type) {?> 
-                                     
-                    <?php if($type['id']==$event['id_type']) { ?>
-                        <option selected value='<?= $type['id']; ?>'> <?= $type['type']."+".$type['score']."XP"; ?> </option> <?php } ?>
-                    <?php if($type['id']!=$event['id_type']) { ?>
-                        <option value='<?= $type['id']; ?>'> <?= $type['type']."+".$type['score']."XP"; ?> </option> <?php } ?>
-                    <?php } ?>  <br>
+                    <label for="email">Email*:</label>
+                    <input type="text" name="email" value="<?=$user['email']?>" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}" title="Please input a valid email (example@email.com)!">
+						
+                    <label for="password">Password*:</label>
+                    <input type="password" placeholder="Nova senha" name="password" required pattern="[^s?]{6,}" title="Six or more characters">
+						  
+                    <label for="avatar"><p>Avatar:</p></label><br>
+					<input type="file" name="image">
+                    <input type="hidden" name="path_img" value='<?=$user['path_photo']?>'> 
 
                 </div>
 
