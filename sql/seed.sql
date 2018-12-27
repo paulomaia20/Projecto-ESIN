@@ -27,7 +27,6 @@
  description VARCHAR,
  place VARCHAR NOT NULL,
  id_type INTEGER NOT NULL REFERENCES event_type(id),
- score INT,
  name_creator VARCHAR NOT NULL REFERENCES users(name)
  );
 
@@ -123,3 +122,4 @@ INSERT INTO event_type(id,type,path_img,score)  VALUES(3,'Apanhar vidro', 'glass
 
 INSERT INTO badge(name, path_img, id_mission) VALUES('Plastic Bag','plastic_bag.png',1);
 INSERT INTO badge(name, path_img, id_mission) VALUES('Newspaper','newspaper.png',2);
+INSERT INTO badge(name, path_img, id_mission) VALUES('Tuna Badge','tuna_can.png',3);
