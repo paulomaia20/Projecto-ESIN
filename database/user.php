@@ -43,6 +43,13 @@
 
   }
 
+  function editProfile($email, $password, $path_photo, $name) {
+    global $conn;
+
+    $stmt = $conn->prepare('UPDATE users SET (email, password, path_photo) = (?, ?, ?)  WHERE name=?');
+    $stmt->execute(array($email, $password, $path_photo, $name));
+  }
+
   function getUserInfo($name) {
     //Function for getting info for the user profile
     global $conn;
