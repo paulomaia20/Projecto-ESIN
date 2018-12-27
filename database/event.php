@@ -137,12 +137,12 @@
 
         if ($name_creator !== '') {
           $query .= ' AND name_creator ILIKE ?';
-          $params[] = $name_creator;
+          $params[] = '%' .$name_creator. '%';
         }
 
         if ($place !== '') {
           $query .= ' AND place ILIKE ?';
-          $params[] = $place;
+          $params[] = '%' .$place. '%';
         }
 
         $stmt = $conn->prepare($query);

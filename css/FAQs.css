@@ -11,7 +11,7 @@ h1{
 	text-decoration: none;
 	text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
-  font-size: 2em;
+  font-size: 1.7em;
 	color:white;
 	line-height: 70px;
 }
@@ -112,3 +112,10 @@ h1{
   transform: rotateX(180deg);
 }
  
+ #treeline {
+  width:100%;
+}
+
+#skyline {
+  width:100%;
+}

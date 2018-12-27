@@ -37,12 +37,14 @@ if (isset($title) && isset($name_creator) && isset($place))
         <div>
             <h1 id="faq-heading">Next events</h1> 
         </div>
+        <div>
         <form id="searchbar" action="event_list.php" method="get">
             <input type="text" name="title" placeholder="Event Name">
             <input type="text" name="name_creator" placeholder="Name of Creator">
             <input type="text" name="place" placeholder="Venue">
             <input type="submit" value="Search">
         </form>
+    </div>
 
 <ul class="grid">
 <?php foreach ($events as $event) {
